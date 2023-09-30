@@ -1,1 +1,30 @@
-<p>days works!</p>
+<table class="day-list">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Ciudad</th>
+        <th>Actividades</th>
+        <th>Descripción</th>
+        <th>Video</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let day of days"> 
+        <td>{{ day.dayNumber }}</td>
+        <td>{{ day.cityName }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let activity of day.activities">{{ activity }}</li>
+          </ul>
+        </td>
+        <td>{{ day.description }}</td>
+        <td>
+          <video width="320" height="240" controls>
+            <source [src]="day.videoUrl" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
