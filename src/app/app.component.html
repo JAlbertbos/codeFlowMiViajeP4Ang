@@ -1,11 +1,14 @@
-
 <header>
-  
-      <li>MI VIAJE</li>
-    
+  <ul>
+    <li>MI VIAJE</li>
+    <!-- Agregar otros elementos de navegación aquí si es necesario -->
+  </ul>
 </header>
 
 <main>
+  <label for="filterCity">Búsqueda por día o ciudad:</label>
+  <input type="text" [(ngModel)]="filterCity" id="filterCity" placeholder="Ingrese día o ciudad">
+
+
   <router-outlet></router-outlet>
 </main>
-
