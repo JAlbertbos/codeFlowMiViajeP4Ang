@@ -1,6 +1,6 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
-import { Day } from './data/data';
+import { Day } from '../data/data';
 
 @Pipe({
   name: 'dayFilter'

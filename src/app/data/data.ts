@@ -24,5 +24,5 @@ export const tripDays: Day[] = [
     description: 'Descripción del día 2',
     videoUrl: 'assets/videos/day2.mp4',
   },
-  // Agregar máss
+  // Agregar más
 ];
