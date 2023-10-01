@@ -1,4 +1,4 @@
-export interface Day {
+export interface City {
   dayNumber: number;
   cityName: string;
   accommodation: string;
@@ -7,7 +7,7 @@ export interface Day {
   videoUrl: string;
 }
 
-export const tripDays: Day[] = [
+export const tripDays: City[] = [
   {
     dayNumber: 1,
     cityName: 'Ciudad 1',

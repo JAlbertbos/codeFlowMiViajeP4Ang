@@ -1,4 +1,4 @@
-import { CityFilterPipe } from './city-filter.pipe';
+import { CityFilterPipe } from './filter.pipe';
 
 describe('CityFilterPipe', () => {
   it('create an instance', () => {

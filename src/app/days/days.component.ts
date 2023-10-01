@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Day, tripDays } from '../data/data';
+import { City, tripDays } from '../data/data';
 import { FormsModule } from '@angular/forms'; 
 
 @Component({
@@ -8,9 +8,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./days.component.css']
 })
 export class DaysComponent {
-  days: Day[] = tripDays;
+  days: City[] = tripDays;
 
-  filterDay: number = 0; // Inicializado con un valor predeterminado
   filterCity: string = ''; // Inicializado con una cadena vacía
 
   // Resto del código

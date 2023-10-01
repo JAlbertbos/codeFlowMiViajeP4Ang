@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 import { DaysComponent } from './days/days.component';
 import { DetailComponent } from './detail/detail.component';
 import { PlayerComponent } from './player/player.component';
-import { DayFilterPipe } from './pipe/day-filter.pipe';
-import { CityFilterPipe } from './pipe/city-filter.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
+
 
 @NgModule({
   declarations: [
@@ -16,8 +16,8 @@ import { CityFilterPipe } from './pipe/city-filter.pipe';
     DaysComponent,
     DetailComponent,
     PlayerComponent,
-    DayFilterPipe,
-    CityFilterPipe
+    FilterPipe,
+    
   ],
   imports: [
     BrowserModule,
