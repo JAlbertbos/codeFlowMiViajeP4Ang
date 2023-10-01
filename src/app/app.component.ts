@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'codeFlow-miViaje';
+
+  selectedFilter: string = 'day'; 
+  filterValue: string = '';
+
   
-  filterCity: string = '';
+  applyFilter() {
+ 
+  }
 }
