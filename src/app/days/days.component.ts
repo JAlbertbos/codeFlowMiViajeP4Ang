@@ -9,8 +9,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class DaysComponent {
   days: City[] = tripDays;
-
   filterCity: string = ''; // Inicializado con una cadena vacía
+  selectedFilter: string = 'city'; 
+  filterValue: string = '';
 
-  // Resto del código
+
+  applyFilter() {
+ 
+  }
+
+  
 }

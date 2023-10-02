@@ -5,23 +5,7 @@
   </ul>
 </header>
 
-<main>
- 
-    <label for="filterType">Filtrar por:</label>
-    <select [(ngModel)]="selectedFilter" id="filterType">
-      <option value="day">Días</option>
-      <option value="day1">Día 1</option>
-      <option value="day2">Día 2</option>
-      <option value="day3">Día 3</option>
-      <option value="day4">Día 4</option>
-      <option value="day5">Día 5</option>
-    </select>
-  
-    <label for="filterValue">Ciudad:</label>
-    <input type="text" [(ngModel)]="filterValue" id="filterValue" placeholder="Nombre de la ciudad">
-  
-    <button (click)="applyFilter()">Aplicar</button>
-  
+  <main>
     <router-outlet></router-outlet>
   </main>
   
