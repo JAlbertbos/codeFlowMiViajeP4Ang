@@ -10,9 +10,9 @@ export class DetailComponent {
   @Input() day!: City; // Recibe el día seleccionado desde el componente padre
 
   // Variable para controlar la visibilidad de los detalles
-  isDetailVisible: boolean = false;
+  isDetailVisible: boolean = true;
 
-  // Función para mostrar u ocultar los detalles
+  // Función para ocultar los detalles(no funciona bien)
   toggleDetail() {
     this.isDetailVisible = !this.isDetailVisible;
   }
