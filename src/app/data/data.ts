@@ -12,7 +12,7 @@ export const tripDays: City[] = [
     dayNumber: 1,
     cityName: 'Ciudad 1',
     accommodation: 'Hotel 1',
-    activities: ['Museo 1', 'Tour 1'],
+    activities: ['Museo 12', 'Tour 1'],
     description: 'Descripción del día 1',
     videoUrl: 'assets/videos/day1.mp4',
   },
