@@ -1,0 +1,18 @@
+<div *ngIf="day">
+    <h2>Detalle del Día {{ day.dayNumber }}</h2>
+    
+    <p>Ciudad: {{ day.cityName }}</p>
+    <p>Alojamiento: {{ day.accommodation }}</p>
+    <p>Actividades:</p>
+
+    <ul>
+      <li *ngFor="let activity of day.activities">{{ activity }}</li>
+    </ul>
+
+    <p>Descripción: {{ day.description }}</p>
+
+    <div *ngIf="isDetailVisible">
+        <button (click)="toggleDetail()">Cerrar</button>
+    </div>
+    
+</div>

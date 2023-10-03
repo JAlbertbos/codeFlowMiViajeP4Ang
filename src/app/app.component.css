@@ -1,0 +1,16 @@
+
+.header-title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height: 100px; 
+    font-size: 36px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color de texto */
+    background-color: #f8f8f8; /* Color de fondo */
+    border-radius: 8px; /* Bordes redondeados */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    
+  }
+  
