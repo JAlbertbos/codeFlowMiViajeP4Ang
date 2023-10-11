@@ -14,7 +14,7 @@ export class DetailComponent {
 
   // Función para ocultar los detalles(no funciona bien)
   toggleDetail() {
-    this.isDetailVisible = !this.isDetailVisible;
+    this.isDetailVisible = false;
   }
-
+  
 }
