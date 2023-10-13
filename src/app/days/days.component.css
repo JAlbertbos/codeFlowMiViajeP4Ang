@@ -1,0 +1,70 @@
+/* Estilos para el filtro*/
+.filter-container {
+    display: flex; /* Asegura que los elementos estén en línea */
+    justify-content: flex-end; /* Alinea el contenido hacia la parte superior y la derecha */ 
+    margin-top: 10px; 
+    margin-right: 80px; 
+    margin-top: 30px;
+    font: 600 20px "Montserrat";
+  }
+.filter-container img {
+    margin-right: 10px;
+    width: 25px;
+    height: 27PX;
+}
+.filter-container button {
+    display: flex; 
+    align-items: center; 
+    cursor: pointer; /* Muestra un cursor de selección al pasar el mouse por encima */
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+}
+.arrow-icon {
+    font-size: 20px; /* Tamaño del ícono de flecha */
+    margin-left: 10px; /* Espacio a la izquierda del ícono */
+    transition: transform 0.3s; /* Agrega una transición suave para la rotación de la flecha */
+}
+.arrow-icon.rotate-right {
+    transform: rotate(-90deg); /* Rota la flecha -90 grados hacia la derecha */
+}
+.arrow-icon.rotate-down {
+    transform: rotate(0deg); /* Rota la flecha 0 grados*/
+}
+
+
+h2 {
+    margin-top: 30px;
+    margin-left: 100px;
+    color: #565656;
+    text-align: left;
+    font: 700 40px "Montserrat", sans-serif;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.day-list {
+    margin-left: 140px;
+    margin-top: 25px;
+    color: #565656;
+    text-align: left;
+    font: 500 30px "Montserrat", sans-serif;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1.6;
+}
+
+.day-symbol {
+    margin-left: 1px;
+    margin-right: 55px; 
+    font: 700 40px "Montserrat";
+  }
+
+.city-symbol {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
