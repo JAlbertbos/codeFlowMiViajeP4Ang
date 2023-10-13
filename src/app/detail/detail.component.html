@@ -1,4 +1,4 @@
-<div *ngIf="day">
+<div *ngIf="day !== null">
     <h2>Detalle del Día {{ day.dayNumber }}</h2>
     
     <p>Ciudad: {{ day.cityName }}</p>
@@ -11,8 +11,11 @@
 
     <p>Descripción: {{ day.description }}</p>
 
+    <button (click)="toggleDetail()">Cerrar</button>
+    <!--
     <div *ngIf="isDetailVisible">
         <button (click)="toggleDetail()">Cerrar</button>
     </div>
+    -->
     
 </div>
