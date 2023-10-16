@@ -1,21 +1,22 @@
 <div *ngIf="day !== null">
-    <h2>Detalle del Día {{ day.dayNumber }}</h2>
-    
-    <p>Ciudad: {{ day.cityName }}</p>
-    <p>Alojamiento: {{ day.accommodation }}</p>
-    <p>Actividades:</p>
-
-    <ul>
-      <li *ngFor="let activity of day.activities">{{ activity }}</li>
-    </ul>
-
-    <p>Descripción: {{ day.description }}</p>
-
-    <button (click)="toggleDetail()">Cerrar</button>
-    <!--
-    <div *ngIf="isDetailVisible">
+  <div class="contenedor">
+      <div class="izquierda">    
+        <p>{{ day.description }}</p>
+        <p><strong>Alojamiento:</strong> {{ day.accommodation }}</p>
+        <p><strong>Actividades de interes:</strong></p>
+        <ul>
+          <li *ngFor="let activity of day.activities">{{ activity }}</li>
+        </ul>
         <button (click)="toggleDetail()">Cerrar</button>
+      </div>
+      <div class="derecha">
+        <div class="contendor-video">
+          <div class="video">
+            <video width="640" height="360" controls>
+              <source src="{{day.videoUrl}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
     </div>
-    -->
-    
 </div>
