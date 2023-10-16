@@ -10,8 +10,8 @@ export class DetailComponent {
   @Input() day!: City | null; // Recibe el día seleccionado desde el componente padre
 
   // Función para ocultar los detalles
-  /*toggleDetail() {
+  toggleDetail() {
     this.day = null;
     location.reload();
-  }*/
+  }
 }
