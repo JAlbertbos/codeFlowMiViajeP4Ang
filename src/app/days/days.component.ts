@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { City, tripDays } from '../data/data';
-import { FormsModule } from '@angular/forms'; 
 
 @Component({
   selector: 'app-days',
@@ -31,7 +30,8 @@ export class DaysComponent {
     }
   }
 
-  // Función para filtrar
+
+  // Función para filtrar la búsqueda
   applyFilter() {
  
   }

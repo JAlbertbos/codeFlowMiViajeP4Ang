@@ -7,14 +7,11 @@ import { City } from '../data/data';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent {
-  @Input() day!: City; // Recibe el día seleccionado desde el componente padre
+  @Input() day!: City | null; // Recibe el día seleccionado desde el componente padre
 
-  // Variable para controlar la visibilidad de los detalles
-  isDetailVisible: boolean = true;
-
-  // Función para ocultar los detalles(no funciona bien)
+  // Función para ocultar los detalles
   toggleDetail() {
-    this.isDetailVisible = !this.isDetailVisible;
+    this.day = null;
+    location.reload();
   }
-
 }
