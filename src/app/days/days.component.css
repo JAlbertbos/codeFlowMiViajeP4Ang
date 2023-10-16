@@ -51,20 +51,28 @@ h2 {
     text-align: left;
     font: 500 30px "Montserrat", sans-serif;
     position: relative;
-    display: flex;
     align-items: center;
     justify-content: flex-start;
     line-height: 1.6;
 }
 
-.day-symbol {
+.day-list button {
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Muestra un cursor de selección al pasar el mouse por encima */
+    margin-bottom: 10px; /* Espacio entre elementos de la lista */
+  }
+.day-list .day-symbol {
+    width: 25px; /* Ancho fijo para el icono */
     margin-left: 1px;
     margin-right: 55px; 
     font: 700 40px "Montserrat";
   }
 
-.city-symbol {
-    margin-left: 10px;
+.day-list .city-symbol {
+    margin-left: 0px;
     margin-right: 10px;
 }
 
