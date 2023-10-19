@@ -7,15 +7,11 @@
       <ul>
         <li *ngFor="let activity of day.activities">{{ activity }}</li>
       </ul>
-      <button (click)="toggleDetail()">Cerrar</button>
+      <!--<button (click)="toggleDetail()">Cerrar</button>-->
     </div>
     <div class="derecha">
       <div class="contendor-video">
-        <div class="video">
-          <video width="640" height="360" controls>
-            <source src="{{day.videoUrl}}" type="video/mp4">
-          </video>
-        </div>
+        <app-player [dayVideo]="day"></app-player>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { City } from '../data/data';
 
 @Component({
   selector: 'app-player',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent {
-
+  @Input() dayVideo: City | null;
+  
+  constructor() {
+    this.dayVideo = null; // Inicializa la propiedad en el constructor
+  }
 }
