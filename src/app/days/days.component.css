@@ -12,7 +12,7 @@
     width: 25px;
     height: 27PX;
 }
-.filter-container button {
+.filter-button {
     display: flex; 
     align-items: center; 
     cursor: pointer; /* Muestra un cursor de selección al pasar el mouse por encima */
@@ -30,6 +30,78 @@
 .arrow-icon.rotate-down {
     transform: rotate(0deg); /* Rota la flecha 0 grados*/
 }
+
+/* Estilos para el fondo oscuro */
+.background-overlay {
+    position: fixed; 
+    top: 130px; /* Comienza desde la parte superior de la página */
+    right: 500px; /* Comienza desde la parte derecha de la página */
+    width: 100%; /* Ancho al 100% de la ventana */
+    height: 100%; /* Altura al 100% de la ventana */
+    background: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con opacidad del 50% */
+    z-index: 1; /* Capa z en 1 para estar detrás del menú emergente */
+}
+/* Estilos para el menú emergente */
+.dropdown-content {
+    background: #ffffff; /* Fondo blanco para el menú */
+    width: 500px; /* Ancho fijo del menú */
+    height: 100%; /* Altura fija del menú */
+    position: fixed; /* Posición fija para mantenerlo en su lugar */
+    top: 300px; /* Alinea el menú en la parte superior de la página */
+    right: 0; /* Alinea el menú en el lado derecho de la página */
+    z-index: 2; /* Capa z en 2 para estar por encima del fondo oscuro */
+    box-sizing: border-box; /* La caja del menú incluye bordes y rellenos en el tamaño */
+  }
+/* Estilos para el contenido del menú emergente */
+.fixed-size-dropdown {
+    margin-left: 50px; /* Espacio interno al contenido del menú */
+    margin-right: 50px;
+    text-align: left; /* Alineación de texto a la izquierda */
+}
+.fixed-size-dropdown input[type="text"] {
+    width: 100%; /* Establece el ancho al 100% para que ocupe todo el ancho del contenedor */
+    height: 33px;
+    font-size: 10px; 
+    text-align: right;
+    padding-right: 100px;
+  }
+.filter-text {
+    margin-top: 30px;
+    font: 700 15px "Montserrat", sans-serif;
+}
+.filter-by-days {
+    font: 300 14px "Montserrat", sans-serif;
+    flex-direction: column;
+    display: flex;
+}
+.filter-by-days label {
+    margin-bottom: 15px; /* Aumenta el espacio entre los días */
+    
+}
+.filter-by-days input[type="checkbox"] {
+    width: 18px; /* Ancho del cuadro de checkbox */
+    height: 18px; /* Altura del cuadro de checkbox */
+    vertical-align: middle; /* Alinea verticalmente el checkbox con el texto */
+}
+.filter-by-cities {
+    font: 300 14px "Montserrat", sans-serif;
+    flex-direction: column;
+    display: flex;
+    
+}
+.filter-by-cities label {
+    margin-bottom: 15px; /* Aumenta el espacio entre los días */
+    text-transform: capitalize;
+}
+.filter-by-cities input[type="checkbox"] {
+    width: 18px; /* Ancho del cuadro de checkbox */
+    height: 18px; /* Altura del cuadro de checkbox */
+    vertical-align: middle; /* Alinea verticalmente el checkbox con el texto */
+}
+
+
+
+
 
 
 h2 {

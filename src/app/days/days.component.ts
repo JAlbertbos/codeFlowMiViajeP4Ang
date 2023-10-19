@@ -15,12 +15,44 @@ export class DaysComponent {
   filterCity: string = ''; // Almacena el valor del filtro de ciudad
   selectedFilter: string = 'city'; // Almacena el tipo de filtro seleccionado (inicialmente, por ciudad)
   filterValue: string = ''; // Almacena el valor del filtro
+  selectedDays: number[] = [];
+  selectedCities: string[] = [];
 
+  isDaySelected(dayNumber: number): boolean {
+    return this.selectedDays.includes(dayNumber);
+  }
 
+  toggleDaySelection(dayNumber: number) {
+    if (this.selectedDays.includes(dayNumber)) {
+      this.selectedDays = this.selectedDays.filter((day) => day !== dayNumber);
+    } else {
+      this.selectedDays.push(dayNumber);
+    }
+  }
+  
+  isCitySelected(cityName: string): boolean {
+    return this.selectedCities.includes(cityName);
+  }
+
+  toggleCitySelection(cityName: string) {
+    if (this.selectedCities.includes(cityName)) {
+      this.selectedCities = this.selectedCities.filter((city) => city !== cityName);
+    } else {
+      this.selectedCities.push(cityName);
+    }
+  }
   // Método para alternar el estado del menú desplegable del filtro
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
+  // Método para cerrar el menú desplegable al hacer clic en el fondo oscuro
+  closeDropdown() {
+    this.dropdownOpen = false;
+  }
+
+
+
+
   // Función para mostrar los detalles del día seleccionado
   showDetails(day: City) {
     if (this.selectedDay === day) {
@@ -30,12 +62,7 @@ export class DaysComponent {
     }
   }
 
-
   // Función para filtrar la búsqueda
   applyFilter() {
- 
-  }
-
-
-    
+  }  
 }
