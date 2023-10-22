@@ -35,25 +35,25 @@ export const tripDays: City[] = [
   {
     dayNumber: 4,
     cityName: 'Osaka',
-    accommodation: 'Hotel Mystays Kyoto Shijo',
-    activities: ['Templo Kinkaku-ji', 'Templo Ginkaku-ji', 'Barrio de Gion', 'Templo Kiyomizu-dera', 'Mercado de Nishiki', 'Templo Fushimi Inari-Taisha', 'Bosque de Bambú de Arashiyama', 'Río Hozugawa'],
-    description: '',
+    accommodation: 'Cross Hotel Osaka',
+    activities: ['Castillo de Osaka', 'Barrio de Dotonbori', 'Mercado Kuromon Ichiba', 'Templo Shitenno-ji', 'Museo de Historia de Osaka', 'Acuario de Osaka', 'Comida callejera en Shinsekai', 'Observatorio Abeno Harukas'],
+    description: 'Comenzaremos explorando el Castillo de Osaka, sumergiéndonos en su historia y disfrutando de vistas panorámicas desde la torre principal. Luego, visitaremos el antiguo Templo Shitenno-ji y el Museo de Historia de Osaka nos ofrecerá una perspectiva cultural. En el Mercado Kuromon Ichiba, nos entregaremos a la deliciosa comida callejera local. Por la tarde, el Acuario de Osaka nos sumergirá en el mundo marino. No podemos perder la oportunidad de probar la comida callejera de Shinsekai antes de disfrutar de vistas desde el observatorio Abeno Harukas. Culminaremos nuestra aventura con una cena en un restaurante local para saborear la rica gastronomía de Osaka y visitar el Barrio de Dotonbori, donde la vida nocturna y los letreros luminosos nos sumergirán en su energía.',
     videoUrl: 'assets/videos/Osaka - Compressed.mp4',
   },
   {
     dayNumber: 5,
     cityName: 'Himeji',
-    accommodation: 'Hotel Mystays Kyoto Shijo',
-    activities: ['Templo Kinkaku-ji', 'Templo Ginkaku-ji', 'Barrio de Gion', 'Templo Kiyomizu-dera', 'Mercado de Nishiki', 'Templo Fushimi Inari-Taisha', 'Bosque de Bambú de Arashiyama', 'Río Hozugawa'], /*FALTA Cambiar*/
-    description: '',
+    accommodation: 'Hotel Monterey Himeji',
+    activities: ['Castillo de Himeji','Jardines Kokoen','Templo Engyo-ji','Museo de Historia de Himeji', 'Calle comercial Oteme-dori'], 
+    description: 'Nuestra jornada en Himeji la comenzaremos explorando el Castillo de Himeji, una joya histórica que nos dejará asombrados con su arquitectura y vistas panorámicas. Luego, nos sumergiremos en la serenidad de los Jardines Kokoen, una joya paisajística cercana al castillo. Más tarde, haremos una excursión al tranquilo Templo Engyo-ji, ubicado en las montañas, para disfrutar de vistas panorámicas y una experiencia espiritual. El Museo de Historia de Himeji nos ofrecerá una visión más profunda de la ciudad. Después, exploraremos la calle comercial Otemae-dori para compras y degustaremos la deliciosa cocina local en un restaurante cercano. Himeji nos brindará una experiencia cultural e histórica en un día inolvidable.',
     videoUrl: 'assets/videos/Himeji - Compressed.mp4',
   },
   {
     dayNumber: 6,
     cityName: 'Hiroshima',
-    accommodation: 'Hotel Mystays Kyoto Shijo',
-    activities: ['Templo Kinkaku-ji', 'Templo Ginkaku-ji', 'Barrio de Gion', 'Templo Kiyomizu-dera', 'Mercado de Nishiki', 'Templo Fushimi Inari-Taisha', 'Bosque de Bambú de Arashiyama', 'Río Hozugawa'], /*FALTA Cambiar*/
-    description: '',
+    accommodation: 'RIHGA Royal Hotel Hiroshima',
+    activities: ['Parque Conmemorativo de la Paz de Hiroshima','Domo de la Bomba Atómica de Hiroshima','Isla de Miyajima','Museo de la Bomba Atómica de Hiroshima','Templo Shukkeien'],
+    description: 'Empezaremos el día en el Parque Conmemorativo de la Paz de Hiroshima, donde el Monumento a la Paz y el Museo Memorial de la Paz nos recordarán la historia de la bomba atómica.Luego, visitaremos el Domo de la Bomba Atómica, un testimonio silencioso de los eventos pasados. También haremos una excursión a la Isla de Miyajima para explorar el Santuario Itsukushima y su famoso Torii flotante. El Museo de la Bomba Atómica de Hiroshima nos ofrecerá una visión más detallada de la historia. Después, encontraremos serenidad en el Templo Shukkeien y degustaremos la deliciosa okonomiyaki de Hiroshima en un restaurante local. Hiroshima nos brindará una experiencia enriquecedora y un mensaje de paz que nunca olvidaremos.',
     videoUrl: 'assets/videos/Hiroshima - Compressed.mp4',
   },
   
