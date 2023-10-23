@@ -12,4 +12,6 @@ export class PlayerComponent {
   constructor() {
     this.dayVideo = null; // Inicializa la propiedad en el constructor
   }
+
+  
 }
