@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-
+import { addUserData } from '../firebase-config/firebase-init'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'codeFlow-miViaje';
+ 
+  constructor() {
+    // función de inicialización de Firebase
+    addUserData();
+  }
 }
