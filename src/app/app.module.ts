@@ -7,9 +7,11 @@ import { DaysComponent } from './days/days.component';
 import { DetailComponent } from './detail/detail.component';
 import { PlayerComponent } from './player/player.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
-import { FirestoreModule } from '@angular/fire/firestore';
+import { FirestoreModule, provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     FormsModule,
     FirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
