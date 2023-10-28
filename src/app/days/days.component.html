@@ -50,7 +50,17 @@
   </div>
 </div>
 
-
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" formControlName="name">
+  </div>
+  <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" cols="30" rows="10" formControlName="description"></textarea>
+  <input type="submit" value="Enviar" class="btn btn-info">
+</div>
+</form>
 
 <div class="list-container">
   <h2>Itinerario del viaje</h2>

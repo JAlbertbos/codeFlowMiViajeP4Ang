@@ -1,5 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { City, tripDays } from '../data/data';
+import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2.service';
+import { FormControl, FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-days',
@@ -7,7 +10,7 @@ import { City, tripDays } from '../data/data';
   styleUrls: ['./days.component.css']
 })
 
-export class DaysComponent {
+export class DaysComponent implements OnInit{
   dropdownOpen: boolean = false; // Variable para rastrear si el menú desplegable del filtro está abierto
   days: City[] = tripDays; // Arreglo que almacena información sobre los días de viaje
   filteredDays: City[] = tripDays;
@@ -82,4 +85,28 @@ export class DaysComponent {
       this.resetFilters();
     }
   }
-}
+
+    formulario: FormGroup;
+  
+    constructor(
+      private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service
+    ) {
+      this.formulario = new FormGroup({
+        name: new FormControl(),
+        description: new FormControl()
+      
+      })
+    }
+  
+    ngOnInit(): void {
+    }
+  
+    async onSubmit() {
+      console.log(this.formulario.value)
+      const response = await this.codeFlowMiViajeP2Service.addCity(this.formulario.value);
+      console.log(response);
+    }
+  
+  }
+
+
