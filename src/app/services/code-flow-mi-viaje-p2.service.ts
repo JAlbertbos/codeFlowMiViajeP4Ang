@@ -3,26 +3,28 @@ import { Firestore, collection, addDoc, collectionData, doc, deleteDoc } from '@
 import { Observable } from 'rxjs';
 import City from '../interfaces/city.interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class CodeFlowMiViajeP2Service {
 
-  constructor(private firestore: Firestore) { }
+export class CodeFlowMiViajeP2Service {
+  
+  constructor(private db: Firestore) { }
 
   //CRUD Ciudad
   addCity (city: City) {
-    const cityRef = collection (this.firestore , 'cityRef')
-    return addDoc(cityRef, city)
+    const cityRef = collection(this.db , 'cities');
+    return addDoc(cityRef, city);
   }
 
-  getCities(): Observable<City[]> {
-    const cityRef = collection(this.firestore, 'cities');
+   getCities(): Observable<City[]> {
+    const cityRef = collection(this.db , 'cities');
     return collectionData(cityRef, { idField: 'id' }) as Observable<City[]>;
   }
 
   deleteCity(city: City) {
-    const cityDocRef = doc(this.firestore, `cities/${city.id}`);
+    const cityDocRef = doc(this.db, `cities/${city.id}`);
     return deleteDoc(cityDocRef);
   }
 
