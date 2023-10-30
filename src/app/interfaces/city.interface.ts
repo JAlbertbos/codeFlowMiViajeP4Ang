@@ -1,5 +1,10 @@
 export default interface City {
     id?: string;
     name: string;
-    description: string;
+    activities: Activities[];
+}
+
+interface Activities {
+  name: string;
+  place: string;
 }

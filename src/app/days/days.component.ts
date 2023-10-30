@@ -93,7 +93,7 @@ export class DaysComponent implements OnInit{
     ) {
       this.formulario = new FormGroup({
         name: new FormControl(),
-        description: new FormControl()
+        activities: new FormControl([]),
       
       })
     }
