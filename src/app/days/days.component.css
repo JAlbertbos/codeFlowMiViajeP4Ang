@@ -22,6 +22,7 @@
     cursor: pointer; /* Cambia el cursor al pasar el mouse por encima para indicar interactividad */
     background: none; /* Elimina el fondo del botón */
     border: none; /* Elimina el borde del botón */
+    z-index: 3;
 }
 
     /* Estilos para el ícono de flecha en el botón de filtro */
@@ -43,11 +44,11 @@
 
     /* Estilos para el fondo oscuro */
 .background-overlay {
-    position: fixed; 
+    position: absolute; 
     top: 130px; /* Comienza desde la parte superior de la página */
     right: 500px; /* Comienza desde la parte derecha de la página */
     width: 100%; /* Ancho al 100% de la ventana */
-    height: 100%; /* Altura al 100% de la ventana */
+    height: 120%; /* Altura al 100% de la ventana */
     background: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con opacidad del 50% */
     z-index: 1; /* Capa z en 1 para estar detrás del menú emergente */
 }
@@ -56,9 +57,9 @@
 .dropdown-content {
     background: #ffffff; /* Fondo blanco para el menú */
     width: 500px; /* Ancho fijo del menú */
-    height: 100%; /* Altura fija del menú */
-    position: fixed; /* Posición fija para mantenerlo en su lugar */
-    top: 250px; /* Alinea el menú en la parte superior de la página */
+    height: 120%; /* Altura fija del menú */
+    position: absolute; /* Posición fija para mantenerlo en su lugar */
+    top: 130px; /* Alinea el menú en la parte superior de la página */
     right: 0; /* Alinea el menú en el lado derecho de la página */
     z-index: 2; /* Capa z en 2 para estar por encima del fondo oscuro */
     box-sizing: border-box; /* La caja del menú incluye bordes y rellenos en el tamaño */
@@ -73,6 +74,7 @@
 
     /* Estilos para la entrada de texto en el menú emergente */
 .search-container input[type="text"] {
+    margin-top: 25%;
     width: 100%; 
     height: 33px;
     font: 300 14px "Montserrat", sans-serif;
@@ -151,6 +153,7 @@
     height: 30px;
     margin-left: 25%;
     margin-top: 5%;
+    margin-bottom: auto;
     background: #cc3131;
     text-align: center;
     color: #ffffff;
@@ -168,6 +171,7 @@
     height: auto;
     flex-direction: column;
     margin-top: 30px;
+    z-index: 0;
 }
     /* Estilos para el título "h2" */
 h2 {

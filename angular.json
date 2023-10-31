@@ -92,7 +92,13 @@
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ]
-            
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "codeFlow-miVIaje:build:production"
           }
         }
       }
