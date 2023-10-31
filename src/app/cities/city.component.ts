@@ -5,9 +5,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-days',
-  templateUrl: './days.component.html',
-  styleUrls: ['./days.component.css']
+  selector: 'app-cities',
+  templateUrl: './city.component.html',
+  styleUrls: ['./city.component.css']
 })
 
 export class DaysComponent implements OnInit{

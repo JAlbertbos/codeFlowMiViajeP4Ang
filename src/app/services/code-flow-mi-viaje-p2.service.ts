@@ -43,9 +43,9 @@ export class CodeFlowMiViajeP2Service {
     });
   }
 
-  async deleteCity(id: string) {
+  async deleteCity(city: City) {
     const cityRef = collection(this.db, 'cities');
-    let q = query(cityRef, where('id', '==', id));
+    let q = query(cityRef, where('id', '==', city));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (document) => {

@@ -1,0 +1,9 @@
+<div class="cities">
+    <div class="city" *ngFor="let city of cities">
+        <div class="info">
+            <h4>{{city.name}}</h4>
+            <p>{{city.activities}}</p>
+            <button class="btn btn-outline-danger" (click)="onClickDelete(city)">Borrar</button>
+        </div>
+    </div>
+</div>
