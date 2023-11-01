@@ -15,7 +15,6 @@ export class CityListComponent implements OnInit {
     private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service
   ) {
     this.cities = [{
-      id:'Prueba de id',
       name: 'Prueba de sitio',
       activities: 'Esto es una prueba'
     }];

@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collectionData, collection, doc, deleteDoc, where, query, updateDoc } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { getDocs } from '@firebase/firestore';
 import City from '../interfaces/city.interface';
-
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CodeFlowMiViajeP2Service {
-  
-  private citySource = new BehaviorSubject<any | null>(null);
-  cities$ = this.citySource.asObservable();
-
 
   constructor(private db: Firestore) { }
 
   //CRUD Ciudad
-  async addCity (city: City) {
-    const cityRef = collection(this.db , 'cities');
-    return addDoc(cityRef, city);
+  async addCity(city: City) {
+    const cityRef = collection(this.db, 'cities');
+    return addDoc(cityRef, city); 
   }
+  
 
   async getCities(filter = '') {
     const cityRef = collection(this.db, 'cities');
@@ -34,7 +30,7 @@ export class CodeFlowMiViajeP2Service {
 
   async updateCity(city: City) {
     const cityRef = collection(this.db, 'cities');
-    let q = query(cityRef, where('id', '==', city.id));
+    let q = query(cityRef, where('id', '==', city));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (document) => {
