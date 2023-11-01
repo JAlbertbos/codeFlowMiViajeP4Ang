@@ -50,18 +50,6 @@
   </div>
 </div>
 
-<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-      <label class="form-label">Name</label>
-      <input type="text" class="form-control" formControlName="name">
-  </div>
-  <div class="mb-3">
-      <label class="form-label">Activities</label>
-      <textarea class="form-control" cols="30" rows="10" formControlName="activities"></textarea>
-  <input type="submit" value="Enviar" class="btn btn-info">
-</div>
-</form>
-
 <div class="list-container">
   <h2>Itinerario del viaje</h2>
     <div class="day-list">
@@ -76,3 +64,28 @@
       </div>
     </div>
 </div>
+
+<form (ngSubmit)="onSubmit()" #formulario="ngForm">
+  <div class="mb-3">
+      <label class="form-label">Ciudad</label>
+      <input type="text" class="form-control" formControlName="name">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Dia</label>
+    <input type="text" class="form-control" formControlName="day">
+</div>
+<div class="mb-3">
+  <label class="form-label">Mes</label>
+  <input type="text" class="form-control" formControlName="month">
+</div>
+  <div class="mb-3">
+      <label class="form-label">Actividades</label>
+      <textarea class="form-control" cols="5" rows="5" formControlName="activities"></textarea>
+</div>
+  <div class="mb-3">
+    <label class="form-label">Video</label>
+    <input type="file" id="video" (change)="onVideoSelected($event)">
+    <button type="submit"  class="btn btn-info">Adjuntar</button>
+</div>
+  <input type="submit" value="Enviar" class="btn btn-info">
+</form>

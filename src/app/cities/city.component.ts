@@ -93,7 +93,10 @@ export class DaysComponent implements OnInit{
     ) {
       this.formulario = new FormGroup({
         name: new FormControl(),
-        activities: new FormControl([]),
+        day: new FormControl(),
+        month: new FormControl(),
+        activities: new FormControl(),
+        video: new FormControl(),
       
       })
     }
@@ -107,6 +110,30 @@ export class DaysComponent implements OnInit{
       console.log(response);
     }
   
+    onVideoSelected(event: Event) {
+      const inputElement = event.target as HTMLInputElement;
+    
+      if (inputElement && inputElement.files) {
+        const selectedFile = inputElement.files[0];
+    
+        if (selectedFile) {
+          // Realiza acciones con el archivo seleccionado
+          console.log('Video seleccionado:', selectedFile);
+        } else {
+          console.error('No se seleccionó ningún archivo.');
+        }
+      } else {
+        console.error('El elemento de entrada no es válido o no tiene archivos.');
+      }
+    }
   }
+  
+  
+  
+  
+  
+
+
+  
 
 
