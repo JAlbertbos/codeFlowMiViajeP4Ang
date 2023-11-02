@@ -23,15 +23,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchFilterPipe,
   ],
   imports: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
