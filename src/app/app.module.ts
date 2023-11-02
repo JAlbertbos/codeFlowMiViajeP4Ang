@@ -25,15 +25,15 @@ import { CityListComponent } from './city-list/city-list.component';
     CityListComponent,
   ],
   imports: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     FirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
