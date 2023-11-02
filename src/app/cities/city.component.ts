@@ -94,7 +94,6 @@ export class DaysComponent implements OnInit{
       this.formulario = new FormGroup({
         name: new FormControl(),
         day: new FormControl(),
-        month: new FormControl(),
         activities: new FormControl(),
         video: new FormControl(),
       

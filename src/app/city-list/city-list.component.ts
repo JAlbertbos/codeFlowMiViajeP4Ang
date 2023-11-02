@@ -18,16 +18,14 @@ export class CityListComponent implements OnInit {
   newCity: City = {
     name: '',
     day: 0,
-    month: '',
     activities: '',
     video: null,
   };
 
   constructor(private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service, private fb: FormBuilder) {
     this.formulario = this.fb.group({
-      name: ['', Validators.required],
-      day: ['', Validators.required],
-      month: ['', Validators.required],
+      name: [''],
+      day: [''],
       activities: [''],
       video: [null], // Inicializa video como null o como corresponda
     });
@@ -57,9 +55,8 @@ export class CityListComponent implements OnInit {
     const newCity: City = {
       name: this.formulario.get('name')?.value || '', // Usar '' como valor predeterminado si es nulo
       day: this.formulario.get('day')?.value || 0, // Usar 0 como valor predeterminado si es nulo
-      month: this.formulario.get('month')?.value || '', // Usar '' como valor predeterminado si es nulo
       activities: this.formulario.get('activities')?.value || '', // Usar '' como valor predeterminado si es nulo
-      video: this.formulario.get('video')?.value || '', // Usar '' como valor predeterminado si es nulo
+      video: this.formulario.get('video')?.value || null, // Usar '' como valor predeterminado si es nulo
     };
   
     // Luego, puedes agregar la nueva ciudad

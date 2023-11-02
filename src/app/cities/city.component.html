@@ -23,7 +23,7 @@
     
       <!-- Contenedor de la barra de búsqueda -->
       <div class="search-container">
-        <input type="text" [(ngModel)]="filterValue" id="filterValue" placeholder="Búsqueda">
+        <input type="text" id="filterValue" placeholder="Búsqueda">
       </div>
     
       <!-- Etiqueta para mostrar los días con checkbox -->
@@ -74,18 +74,13 @@
     <label class="form-label">Dia</label>
     <input type="text" class="form-control" formControlName="day">
 </div>
-<div class="mb-3">
-  <label class="form-label">Mes</label>
-  <input type="text" class="form-control" formControlName="month">
-</div>
   <div class="mb-3">
       <label class="form-label">Actividades</label>
       <textarea class="form-control" cols="5" rows="5" formControlName="activities"></textarea>
 </div>
   <div class="mb-3">
     <label class="form-label">Video</label>
-    <input type="file" id="video" (change)="onVideoSelected($event)">
-    <button type="submit"  class="btn btn-info">Adjuntar</button>
+    <input type="file" class="form-control" formControlName="activities"(change)="onVideoSelected($event)">
 </div>
   <input type="submit" value="Enviar" class="btn btn-info">
 </form>

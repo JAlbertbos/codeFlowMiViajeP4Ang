@@ -27,7 +27,7 @@ const initializeFirebase = async () => {
   return { app, firestore };
 };
 
-initializeFirebase().then(({ app, firestore }) => {
+initializeFirebase().then(({  }) => {
   platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.error(err));
 });
