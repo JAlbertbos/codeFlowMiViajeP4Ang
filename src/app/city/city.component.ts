@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./city.component.css']
 })
 
-export class DaysComponent implements OnInit{
+export class CityComponent implements OnInit{
   dropdownOpen: boolean = false; // Variable para rastrear si el menú desplegable del filtro está abierto
   days: City[] = tripDays; // Arreglo que almacena información sobre los días de viaje
   filteredDays: City[] = tripDays;

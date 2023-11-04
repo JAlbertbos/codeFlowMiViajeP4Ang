@@ -2,11 +2,8 @@
     <div class="city" *ngFor="let city of cities">
         <div class="info">
             <h4>{{city.name}}</h4>
-            <p>{{city.activities}}</p>
+            <p>Día: {{city.day}}</p>
             <button class="btn btn-outline-danger" (click)="onClickDelete(city)">Borrar</button>
         </div>
     </div>
 </div>
-<div *ngFor="let city of cities">
-    {{ city.name }}
-  </div>
