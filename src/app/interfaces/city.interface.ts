@@ -2,7 +2,7 @@ export default interface City {
     id?: string;
     name: string;
     day: number;
-    activities: string;
+    activities: string[];
     video?: File | null; 
 }
 

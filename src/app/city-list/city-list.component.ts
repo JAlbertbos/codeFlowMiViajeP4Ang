@@ -18,7 +18,7 @@ export class CityListComponent implements OnInit {
   newCity: City = {
     name: '',
     day: 0,
-    activities: '',
+    activities: [],
     video: null,
   };
 
@@ -26,7 +26,7 @@ export class CityListComponent implements OnInit {
     this.formulario = this.fb.group({
       name: [''],
       day: [''],
-      activities: [''],
+      activities: [],
       video: [null], // Inicializa video como null o como corresponda
     });
   }
@@ -47,19 +47,21 @@ export class CityListComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0]; // Obtén el archivo seleccionado
+    const file: File = event.target.files[0]; // Obtiene el archivo seleccionado
     this.newCity.video = file; // Asigna el archivo a newCity.video
   }
   onSubmit() {
-    // Asegúrate de que newCity esté correctamente inicializado con los valores del formulario
+    // inicializado con los valores del formulario
     const newCity: City = {
-      name: this.formulario.get('name')?.value || '', // Usar '' como valor predeterminado si es nulo
-      day: this.formulario.get('day')?.value || 0, // Usar 0 como valor predeterminado si es nulo
-      activities: this.formulario.get('activities')?.value || '', // Usar '' como valor predeterminado si es nulo
+      name: this.formulario.get('name')?.value || '', // Usa '' como valor predeterminado si es nulo
+      day: this.formulario.get('day')?.value || 0, // Usa 0 como valor predeterminado si es nulo
+      activities: this.formulario.get('activities')?.value.split(','),// Usa '' como valor predeterminado si es nulo
       video: this.formulario.get('video')?.value || null, // Usar '' como valor predeterminado si es nulo
     };
+
+    
   
-    // Luego, puedes agregar la nueva ciudad
+    // Agrega la nueva ciudad
     this.codeFlowMiViajeP2Service.addCity(newCity).then(() => {
       this.refreshCityList();
       this.formulario.reset(); // Esto restablecerá el formulario después de agregar la ciudad
