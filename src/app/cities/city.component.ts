@@ -106,6 +106,8 @@ export class DaysComponent implements OnInit{
     async onSubmit() {
       console.log(this.formulario.value)
       const response = await this.codeFlowMiViajeP2Service.addCity(this.formulario.value);
+      console.log('Ciudad agregada con éxito', response);
+      this.formulario.reset();
       console.log(response);
     }
   

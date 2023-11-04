@@ -29,7 +29,6 @@ import { CityListComponent } from './city-list/city-list.component';
     provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     FirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
