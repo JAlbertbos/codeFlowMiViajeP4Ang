@@ -11,61 +11,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 
 export class CityListComponent implements OnInit {
-
-  formulario: FormGroup;
-
-  cities: City[] = [];
-  newCity: City = {
-    name: '',
-    day: 0,
-    activities: [],
-    video: null,
-  };
-
-  constructor(private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service, private fb: FormBuilder) {
-    this.formulario = this.fb.group({
-      name: [''],
-      day: [''],
-      activities: [],
-      video: [null], // Inicializa video como null o como corresponda
-    });
-  }
-  async ngOnInit() {
-    (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
-      this.cities = cities;
-    });  }
-
-  async refreshCityList() {
-    (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
-      this.cities = cities;
-    });
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
-  onClickDelete(city: City) {
-    // Lógica para eliminar la ciudad
-    //llamar a this.refreshCityList() para actualizar la lista
-  }
-
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0]; // Obtiene el archivo seleccionado
-    this.newCity.video = file; // Asigna el archivo a newCity.video
-  }
-  onSubmit() {
-    // inicializado con los valores del formulario
-    const newCity: City = {
-      name: this.formulario.get('name')?.value || '', // Usa '' como valor predeterminado si es nulo
-      day: this.formulario.get('day')?.value || 0, // Usa 0 como valor predeterminado si es nulo
-      activities: this.formulario.get('activities')?.value.split(','),// Usa '' como valor predeterminado si es nulo
-      video: this.formulario.get('video')?.value || null, // Usar '' como valor predeterminado si es nulo
-    };
-
-    
   
-    // Agrega la nueva ciudad
-    this.codeFlowMiViajeP2Service.addCity(newCity).then(() => {
-      this.refreshCityList();
-      this.formulario.reset(); // Esto restablecerá el formulario después de agregar la ciudad
-    });
-  }
   
 }

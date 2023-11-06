@@ -1,5 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
-import { City } from '../data/data';
+import City from '../interfaces/city.interface';
+
 
 @Component({
   selector: 'app-detail',
