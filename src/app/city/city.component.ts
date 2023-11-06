@@ -93,6 +93,7 @@ export class CityComponent implements OnInit{
   newCity: City = {
     name: '',
     day: 0,
+    description: '',
     accomodation: '',
     activities: [],
     video: null,
@@ -105,6 +106,7 @@ export class CityComponent implements OnInit{
     this.formulario = this.fb.group({
       name: [''],
       day: [''],
+      description: [''],
       accomodation: [''],
       activities: [],
       video: [null],
@@ -130,8 +132,9 @@ export class CityComponent implements OnInit{
   }
 
   onSubmit() {
-    const nameControl = this.formulario.get('name');
+  const nameControl = this.formulario.get('name');
   const dayControl = this.formulario.get('day');
+  const descriptionControl = this.formulario.get('description');
   const accomodationControl = this.formulario.get('accomodation');
   const activitiesControl = this.formulario.get('activities');
 
@@ -139,6 +142,7 @@ export class CityComponent implements OnInit{
   if (
     !nameControl?.value ||
     !dayControl?.value ||
+    !descriptionControl?.value ||
     !accomodationControl?.value ||
     !activitiesControl?.value
   ) {
@@ -155,6 +159,7 @@ export class CityComponent implements OnInit{
       const newCity: City = {
         name: this.formulario.get('name')?.value || '',
         day: this.formulario.get('day')?.value || 0,
+        description: this.formulario.get('description')?.value || '',
         accomodation: this.formulario.get('accomodation')?.value || '',
         activities: activities,
         video: this.formulario.get('video')?.value || null,

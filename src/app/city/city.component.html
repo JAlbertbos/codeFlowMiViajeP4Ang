@@ -96,6 +96,13 @@
     </div>
   </div>
   <div class="mb-3">
+    <label class="form-label">Descripción</label>
+    <textarea class="form-control" cols="5" rows="5" formControlName="description" required></textarea>
+    <div *ngIf="formulario.get('description')?.hasError('required') && formulario.get('description')?.touched">
+      El campo Descripción es obligatorio.
+    </div>
+  </div>
+  <div class="mb-3">
     <label class="form-label">Alojamiento</label>
     <input type="text" class="form-control" formControlName="accomodation" required>
     <div *ngIf="formulario.get('accomodation')?.hasError('required') && formulario.get('accomodation')?.touched">
