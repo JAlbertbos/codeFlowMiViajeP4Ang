@@ -3,7 +3,6 @@ import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import City from '../interfaces/city.interface';
 
-
 @Component({
   selector: 'app-cities',
   templateUrl: './city.component.html',
@@ -11,86 +10,13 @@ import City from '../interfaces/city.interface';
 })
 
 export class CityComponent implements OnInit{
-  //dropdownOpen: boolean = false; // Variable para rastrear si el menú desplegable del filtro está abierto
-  //days: City[] = tripDays; // Arreglo que almacena información sobre los días de viaje
-  //filteredDays: City[] = tripDays;
-  //@Input() selectedDay: City | null = null; // Almacena el día seleccionado
-  //@Output() daySelected = new EventEmitter<City>();
-  //filterValue: string = ''; // Almacena el valor del filtro
-  //selectedDays: number[] = [];
-  //selectedCities: string[] = [];
-
-    // Verifica si un día está seleccionado
- /*  isDaySelected(dayNumber: number): boolean {
-    return this.selectedDays.includes(dayNumber);
-  } */
-
-    // Alterna la selección de un día
- /*  toggleDaySelection(dayNumber: number) {
-    if (this.selectedDays.includes(dayNumber)) {
-      this.selectedDays = this.selectedDays.filter((day) => day !== dayNumber);
-    } else {
-      this.selectedDays.push(dayNumber);
-    }
-  } */
-
-    // Verifica si una ciudad está seleccionada
-  /* isCitySelected(cityName: string): boolean {
-    return this.selectedCities.includes(cityName);
-  } */
-
-    // Alterna la selección de una ciudad
-  /* toggleCitySelection(cityName: string) {
-    if (this.selectedCities.includes(cityName)) {
-      this.selectedCities = this.selectedCities.filter((city) => city !== cityName);
-    } else {
-      this.selectedCities.push(cityName);
-    }
-  } */
-    // Método para alternar el estado del menú desplegable del filtro
-  /* toggleDropdown() {
-    this.dropdownOpen = !this.dropdownOpen;
-  } */
-
-    // Método para cerrar el menú desplegable al hacer clic en el fondo oscuro
- /*  closeDropdown() {
-    this.dropdownOpen = false;
-  } */
-
-    // Función para mostrar los detalles del día seleccionado
- /*  showDetails(day: City) {
-    if (this.selectedDay === day) {
-      this.selectedDay = null;
-    } else {
-      this.selectedDay = day; 
-    }
-  } */
-
-    // Borra los días seleccionados y ciudades seleccionadas, restableciendo los filtros
- /*  resetFilters() {
-    this.selectedDays = [];
-    this.selectedCities = [];
-    this.filteredDays = this.days; // Restablecer los días
-  } */
-    
-   // Función para filtrar la búsqueda
- /*  applyFilters() {
-    this.filteredDays = this.days.filter((day) => {
-      const isSelectedDay = this.selectedDays.includes(day.dayNumber);
-      const isSelectedCity = this.selectedCities.includes(day.cityName);
-      return isSelectedDay || isSelectedCity;
-    });
-    if (this.selectedDays.length === 0 && this.selectedCities.length === 0) {
-      // Si no se ha seleccionado ningún día ni ciudad, mostrar todos los días
-      this.resetFilters();
-    }
-  } */
-  showErrorMessage: boolean = false;
-  dropdownOpen: boolean = false;
-
-  formulario: FormGroup;
-  cities: City[] = [];
-  newCity: City = {
+  @Input() selectedCity: City | null = null; 
+  showErrorMessage: boolean = false;    // Variable para manejar el estado de la aplicación
+  dropdownOpen: boolean = false;    // Variable para manejar el estado de la aplicación
+  showForm: boolean = false;    // Variable para manejar la aparcion del formulario
+  formulario: FormGroup;    // FormGroup para el formulario de entrada
+  cities: City[] = [];    // Array para almacenar las ciudades
+  newCity: City = {   // Objeto para almacenar los datos del nuevo elemento de la ciudad
     name: '',
     day: 0,
     description: '',
@@ -103,6 +29,7 @@ export class CityComponent implements OnInit{
     private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service,
     private fb: FormBuilder,
   ) {
+    // Inicialización del formulario 
     this.formulario = this.fb.group({
       name: [''],
       day: [''],
@@ -113,49 +40,68 @@ export class CityComponent implements OnInit{
     });
   }
 
+  // Función para mostrar los detalles del día seleccionado
+  showDetails(day: City) {
+      // Si el día seleccionado ya está mostrándose, ocúltalo
+    if (this.selectedCity === day) {
+      this.selectedCity = null;
+    } else {
+      // Si no, muestra los detalles del día seleccionado
+      this.selectedCity = day; 
+    }
+  }
+
+  // Método que se ejecuta al inicio del componente
   async ngOnInit() {
+    // Obtener las ciudades desde el servicio y suscribirse a los cambios
     (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
       this.cities = cities;
     });
   }
 
+  // Método para actualizar la lista de ciudades
   async refreshCityList() {
+    // Obtener las ciudades desde el servicio y actualizar la variable local
     (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
       this.cities = cities;
     });
   }
-  
 
+  // Método que se ejecuta cuando se selecciona un archivo de video
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     this.newCity.video = file;
   }
 
+  // Método que se ejecuta al enviar el formulario
   onSubmit() {
-  const nameControl = this.formulario.get('name');
-  const dayControl = this.formulario.get('day');
-  const descriptionControl = this.formulario.get('description');
-  const accomodationControl = this.formulario.get('accomodation');
-  const activitiesControl = this.formulario.get('activities');
+    // Obtener los controles del formulario para realizar validaciones
+    const nameControl = this.formulario.get('name');
+    const dayControl = this.formulario.get('day');
+    const descriptionControl = this.formulario.get('description');
+    const accomodationControl = this.formulario.get('accomodation');
+    const activitiesControl = this.formulario.get('activities');
 
-  // Verifica si los campos obligatorios están vacíos
-  if (
-    !nameControl?.value ||
-    !dayControl?.value ||
-    !descriptionControl?.value ||
-    !accomodationControl?.value ||
-    !activitiesControl?.value
-  ) {
-    // Muestra el mensaje de error
-    this.showErrorMessage = true;
-    return; // No envíes el formulario si falta información obligatoria
-  }
+    // Verificar si los campos obligatorios están vacíos
+    if (
+      !nameControl?.value ||
+      !dayControl?.value ||
+      !descriptionControl?.value ||
+      !accomodationControl?.value ||
+      !activitiesControl?.value
+    ) {
+      // Mostrar el mensaje de error si falta información obligatoria
+      this.showErrorMessage = true;
+      return; 
+    }
 
+    // Verificar si el formulario es válido
     if (this.formulario.valid) {
-      // El formulario es válido, procede a enviar los datos
+      // El formulario es válido, proceder a enviar los datos
       const activitiesValue = this.formulario.get('activities')?.value;
       const activities = activitiesValue ? activitiesValue.split(',') : [];
-  
+
+      // Crear un nuevo objeto City con los datos del formulario
       const newCity: City = {
         name: this.formulario.get('name')?.value || '',
         day: this.formulario.get('day')?.value || 0,
@@ -164,25 +110,35 @@ export class CityComponent implements OnInit{
         activities: activities,
         video: this.formulario.get('video')?.value || null,
       };
-  
+
+      // Llamar al servicio para agregar la ciudad
       this.codeFlowMiViajeP2Service.addCity(newCity).then((response) => {
         if (response) {
+          // Obtener indice de la ultima ciudad de la lista
+          const index = this.cities.length -1;
+
+          // Insertar la nueva ciudad debajo de la ultima ciudad insertada
+          this.cities.splice(index + 1, 0, newCity);
+
+          // Actualizar la lista de ciudades y resetear el formulario
           this.refreshCityList();
           this.formulario.reset();
           this.showErrorMessage = false;
+
+          // Cerrar el formulario automáticamente después de enviarlo
+          this.toggleForm();
         } else {
-          // Realiza alguna acción de validación adicional si es necesario
+          // Realizar alguna acción de validación adicional si es necesario
           console.error('Error al guardar la ciudad.');
         }
       });
     } else {
-      // El formulario no es válido, muestra un mensaje de error o realiza alguna acción de validación adicional
-      console.error('El formulario contiene errores o campos obligatorios no están llenos.');
+      // El formulario no es válido, mostramos un mensaje de error
+      console.error('El formulario contiene errores o campos obligatorios que no están llenos.');
     }
   }
-  
-  
 
+  // Método que se ejecuta cuando se selecciona un archivo de video en el formulario
   onVideoSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
 
@@ -199,11 +155,18 @@ export class CityComponent implements OnInit{
     }
   }
 
+  // Método para alternar el estado de la variable dropdownOpen
   toggleDropdown() {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
+ // Método para cerrar el menú desplegable
   closeDropdown() {
     this.dropdownOpen = false;
+  }
+
+
+  toggleForm() {
+    this.showForm = !this.showForm;
   }
 }

@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { City } from '../data/data';
+//import { City } from '../data/data';
 
 @Pipe({
   name: 'searchFilter'
 })
 export class SearchFilterPipe implements PipeTransform {
-  transform(items: City[], searchText: string): City[] {
+  transform(items: any[], searchText: string): any[] {
     if (!items) {
       return [];
     }
