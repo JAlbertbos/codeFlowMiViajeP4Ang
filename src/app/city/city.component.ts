@@ -175,13 +175,18 @@ export class CityComponent implements OnInit{
   // Método que se ejecuta al enviar el formulario de edición
   onSubmitEditar() {
     const activitiesValue = this.formularioEditar.get('activities')?.value;
-    const activities = typeof activitiesValue === 'string' ? activitiesValue.split(',') : [];
+    if(typeof activitiesValue === 'string'){
+       activities = activitiesValue.split(',');
+    }else{
+      activities = this.formularioEditar.get('activities')?.value;
+    }
+    
     const newCity: City = {
       name: this.formularioEditar.get('name')?.value || '',
       day: this.formularioEditar.get('day')?.value || 0,
       description: this.formularioEditar.get('description')?.value || '',
       accomodation: this.formularioEditar.get('accomodation')?.value || '',
-      activities: activities || '',
+      activities: activities || [],
       video: this.formularioEditar.get('video')?.value || null,
     };
     // Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
