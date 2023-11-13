@@ -174,6 +174,7 @@ export class CityComponent implements OnInit{
   
   // Método que se ejecuta al enviar el formulario de edición
   onSubmitEditar() {
+    var activities: string[] = [];
     const activitiesValue = this.formularioEditar.get('activities')?.value;
     if(typeof activitiesValue === 'string'){
        activities = activitiesValue.split(',');
@@ -189,10 +190,10 @@ export class CityComponent implements OnInit{
       activities: activities || [],
       video: this.formularioEditar.get('video')?.value || null,
     };
-    // Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
+// Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
     this.codeFlowMiViajeP2Service.updateCity(newCity,this.diaEditar,this.ciudadEditar);
     this.closeModal();
-  }
+  }
 
   // Metodo para eliminar un día (ciudad) específico
   async eliminarDia(city: City){
