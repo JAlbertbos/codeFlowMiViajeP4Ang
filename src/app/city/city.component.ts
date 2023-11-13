@@ -51,7 +51,10 @@ export class CityComponent implements OnInit{
     }
   }
 
-  
+  async eliminarDia(city: City){
+    console.log(city);
+    await this.codeFlowMiViajeP2Service.deleteCity(city);
+  }
 
   // Método que se ejecuta al inicio del componente
   async ngOnInit() {

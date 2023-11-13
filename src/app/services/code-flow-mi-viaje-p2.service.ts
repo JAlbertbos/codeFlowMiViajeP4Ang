@@ -40,7 +40,7 @@ export class CodeFlowMiViajeP2Service {
 
   async deleteCity(city: City) {
     const cityRef = collection(this.db, 'cities');
-    let q = query(cityRef, where('id', '==', city));
+    let q = query(cityRef, where('name', '==', city.name), where('day', '==', city.day));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (document) => {
