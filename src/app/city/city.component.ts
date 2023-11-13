@@ -14,7 +14,7 @@ export class CityComponent implements OnInit{
   showErrorMessage: boolean = false;    // Variable para manejar el estado de la aplicación
   dropdownOpen: boolean = false;    // Variable para manejar el estado de la aplicación
   showForm: boolean = false;    // Variable para manejar la aparcion del formulario
-  formulario: FormGroup;    // FormGroup para el formulario de entrada
+  formulario: FormGroup;
   cities: City[] = [];    // Array para almacenar las ciudades
   newCity: City = {   // Objeto para almacenar los datos del nuevo elemento de la ciudad
     name: '',
@@ -152,6 +152,16 @@ export class CityComponent implements OnInit{
       // El formulario no es válido, mostramos un mensaje de error
       console.error('El formulario contiene errores o campos obligatorios que no están llenos.');
     }
+  }
+  
+  onSubmitEditar() {
+    const nameControl = this.formulario.get('name');
+    const dayControl = this.formulario.get('day');
+    const descriptionControl = this.formulario.get('description');
+    const accomodationControl = this.formulario.get('accomodation');
+    const activitiesControl = this.formulario.get('activities');
+
+    console.log("Nombre: " + this.formulario.get('name')?.value);
   }
 
   // Método que se ejecuta cuando se selecciona un archivo de video en el formulario

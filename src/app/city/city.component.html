@@ -51,8 +51,39 @@
 
 <div class="modal" [ngClass]="{'show': showModal}">
   <div class="modal-content">
-      <span class="d-flex justify-content-end" (click)="closeModal()">&times;</span>
-        Modal para la ciudad: {{ selectedCity?.day }}
+      <span class="d-flex justify-content-end" (click)="closeModal()"><i class="fa fa-close"></i></span>
+        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formulario" class="my-4 custom-form" name="newItem">
+          <div class="mb-3">
+            <label class="form-label">Ciudad</label>
+            <input type="text" class="form-control" formControlName="name" title="Nombre" required
+            [value]="selectedCity?.name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Día</label>
+            <input type="number" class="form-control" formControlName="day" title="dia" required
+            [value]="selectedCity?.day">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Descripción</label>
+            <textarea class="form-control" cols="5" rows="5" formControlName="description" title="Descripcion"required
+            [value]="selectedCity?.description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Alojamiento</label>
+            <input type="text" class="form-control" formControlName="accomodation" title="Alojamiento" required
+            [value]="selectedCity?.accomodation">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Actividades</label>
+            <textarea class="form-control" cols="5" rows="5" formControlName="activities" title="Actividades" required
+            [value]="selectedCity?.activities"></textarea>
+          </div>  
+          <div class="mb-3">
+            <label class="form-label">Video</label>
+            <input type="file" class="form-control" formControlName="video" title="Video">
+          </div>
+          <button type="button" class="boton-enviar" (click)="onSubmitEditar()">Editar</button>
+        </form>
   </div>
 </div>
 
