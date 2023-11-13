@@ -18,7 +18,6 @@ export class CodeFlowMiViajeP2Service {
     return addDoc(cityRef, city); 
   }
   
-
   async getCities(filter = '') {
     const cityRef = collection(this.db, 'cities');
     let q = query(cityRef);

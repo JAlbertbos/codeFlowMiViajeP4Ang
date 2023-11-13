@@ -51,6 +51,8 @@ export class CityComponent implements OnInit{
     }
   }
 
+  
+
   // Método que se ejecuta al inicio del componente
   async ngOnInit() {
     // Obtener las ciudades desde el servicio y suscribirse a los cambios

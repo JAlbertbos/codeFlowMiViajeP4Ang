@@ -93,3 +93,20 @@ form[name="newItem"].custom-form {
     color:  #565656;
 
 }
+
+/* Estilos para el contenedor de los botones */
+.city-info {
+    display: flex;
+}
+
+/* Estilos para el boton editar */
+.boton-editar {
+    font-size: 17px;
+    margin-left: 50px;
+}
+
+/* Estilos para el boton eliminar */
+.boton-eliminar {
+    font-size: 17px;
+    margin-left: 10px;
+}

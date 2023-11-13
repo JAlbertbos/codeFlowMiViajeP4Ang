@@ -62,11 +62,12 @@
           <span class="day-symbol">{{ selectedCity === city ? '-' : '+' }}</span>Día {{ city.day }}
           <span class="city-symbol">-</span>{{ city.name | uppercase }}
         </button>
-      <!-- Detalles que se muestran cuando se selecciona el elemento -->
+        <button class="boton-editar" (click)="showDetails(city)" title="Eliminar"><i class="fa fa-edit"></i></button>
+        <button class="boton-eliminar" (click)="showDetails(city)" title="Eliminar"><i class="fa fa-trash"></i></button>
+      </div> 
       <div *ngIf="selectedCity === city" class="details">
-        <app-detail *ngIf="selectedCity" [day]="selectedCity"></app-detail>
-      </div>
-    </div> 
+      <app-detail *ngIf="selectedCity" [day]="selectedCity"></app-detail>
+    </div>
   </div> 
 </div>
 
