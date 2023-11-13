@@ -49,6 +49,58 @@
   </div>
 </div> -->
 
+<div class="modal" [ngClass]="{'show': showModal}">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <form (ngSubmit)="onSubmit()" [formGroup]="formulario" class="my-4 custom-form" name="newItem">
+      <div class="mb-3">
+        <label class="form-label">Ciudad</label>
+        <input type="text" class="form-control" formControlName="name" title="Nombre" required>
+        <div *ngIf="formulario.get('name')?.hasError('required') && formulario.get('name')?.touched">
+          El campo Ciudad es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Día</label>
+        <input type="number" class="form-control" formControlName="day" title="dia" required>
+        <div *ngIf="formulario.get('day')?.hasError('required') && formulario.get('day')?.touched">
+          El campo Día es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" cols="5" rows="5" formControlName="description" title="Descripcion"required></textarea>
+        <div *ngIf="formulario.get('description')?.hasError('required') && formulario.get('description')?.touched">
+          El campo Descripción es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Alojamiento</label>
+        <input type="text" class="form-control" formControlName="accomodation" title="Alojamiento" required>
+        <div *ngIf="formulario.get('accomodation')?.hasError('required') && formulario.get('accomodation')?.touched">
+          El campo Alojamiento es obligatorio.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Actividades</label>
+        <textarea class="form-control" cols="5" rows="5" formControlName="activities" title="Actividades" required
+                  placeholder="Separa las actividades por comas (Ejemplo: Actividad 1, Actividad 2, etc)"></textarea>
+        <div *ngIf="formulario.get('activities')?.hasError('required') && formulario.get('activities')?.touched">
+          El campo Actividades es obligatorio.
+        </div>
+      </div>  
+      <div class="mb-3">
+        <label class="form-label">Video</label>
+        <input type="file" class="form-control" formControlName="video" title="Video">
+      </div>
+      <div class="error-message" *ngIf="showErrorMessage">
+        Por favor, rellena todos los campos.
+      </div>
+      <button type="button" class="boton-enviar" (click)="onSubmit()">Enviar</button>
+    </form>
+  </div>
+</div>
+
 <div class="list-container">
   <h2>Itinerario del viaje</h2>
   <!-- Contenedor de la lista de ciudades -->
@@ -62,7 +114,9 @@
           <span class="day-symbol">{{ selectedCity === city ? '-' : '+' }}</span>Día {{ city.day }}
           <span class="city-symbol">-</span>{{ city.name | uppercase }}
         </button>
-        <button class="boton-editar" (click)="showDetails(city)" title="Eliminar"><i class="fa fa-edit"></i></button>
+        <!--<button class="boton-editar" (click)="showDetails(city)" title="Eliminar"></i></button>-->
+        <!--<button type="button" class="boton-editar" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>-->
+        <button (click)="openModal()" class="boton-editar"><i class="fa fa-edit"></i></button>
         <button class="boton-eliminar" (click)="eliminarDia(city)" title="Eliminar"><i class="fa fa-trash"></i></button>
       </div> 
       <div *ngIf="selectedCity === city" class="details">
@@ -121,4 +175,3 @@
     <button type="button" class="boton-enviar" (click)="onSubmit()">Enviar</button>
   </form>
 </div>
-

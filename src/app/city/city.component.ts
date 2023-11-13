@@ -56,6 +56,16 @@ export class CityComponent implements OnInit{
     await this.codeFlowMiViajeP2Service.deleteCity(city);
   }
 
+
+  showModal = false;
+  openModal() {
+    this.showModal = true;
+  }
+  closeModal() {
+    this.showModal = false;
+  }
+
+
   // Método que se ejecuta al inicio del componente
   async ngOnInit() {
     // Obtener las ciudades desde el servicio y suscribirse a los cambios
