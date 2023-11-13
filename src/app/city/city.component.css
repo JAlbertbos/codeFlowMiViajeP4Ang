@@ -150,4 +150,7 @@ form[name="newItem"].custom-form {
   .show {
     display: block;
   }
-  
+
+  .closeModal {
+    float: right;
+  }

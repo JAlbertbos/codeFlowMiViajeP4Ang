@@ -58,7 +58,8 @@ export class CityComponent implements OnInit{
 
 
   showModal = false;
-  openModal() {
+  openModal(city: City) {
+    this.selectedCity = city;
     this.showModal = true;
   }
   closeModal() {
