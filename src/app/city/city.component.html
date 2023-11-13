@@ -52,31 +52,31 @@
 <div class="modal" [ngClass]="{'show': showModal}">
   <div class="modal-content">
       <span class="d-flex justify-content-end" (click)="closeModal()"><i class="fa fa-close"></i></span>
-        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formulario" class="my-4 custom-form" name="newItem">
+        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formularioEditar" class="my-4 custom-form" name="newItem">
           <div class="mb-3">
             <label class="form-label">Ciudad</label>
             <input type="text" class="form-control" formControlName="name" title="Nombre" required
-            [value]="selectedCity?.name">
+            placeholder="{{cityEdit?.name}}">
           </div>
           <div class="mb-3">
             <label class="form-label">Día</label>
             <input type="number" class="form-control" formControlName="day" title="dia" required
-            [value]="selectedCity?.day">
+            placeholder="{{cityEdit?.day}}">
           </div>
           <div class="mb-3">
             <label class="form-label">Descripción</label>
             <textarea class="form-control" cols="5" rows="5" formControlName="description" title="Descripcion"required
-            [value]="selectedCity?.description"></textarea>
+            placeholder="{{cityEdit?.description}}"></textarea>
           </div>
           <div class="mb-3">
             <label class="form-label">Alojamiento</label>
             <input type="text" class="form-control" formControlName="accomodation" title="Alojamiento" required
-            [value]="selectedCity?.accomodation">
+            placeholder="{{cityEdit?.accomodation}}">
           </div>
           <div class="mb-3">
             <label class="form-label">Actividades</label>
             <textarea class="form-control" cols="5" rows="5" formControlName="activities" title="Actividades" required
-            [value]="selectedCity?.activities"></textarea>
+            placeholder="{{cityEdit?.activities}}"></textarea>
           </div>  
           <div class="mb-3">
             <label class="form-label">Video</label>

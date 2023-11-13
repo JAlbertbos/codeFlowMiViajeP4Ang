@@ -15,6 +15,10 @@ export class CityComponent implements OnInit{
   dropdownOpen: boolean = false;    // Variable para manejar el estado de la aplicación
   showForm: boolean = false;    // Variable para manejar la aparcion del formulario
   formulario: FormGroup;
+  formularioEditar: FormGroup;
+  cityEdit: City | undefined;
+  diaEditar: Number = 0;
+  ciudadEditar: String = "";
   cities: City[] = [];    // Array para almacenar las ciudades
   newCity: City = {   // Objeto para almacenar los datos del nuevo elemento de la ciudad
     name: '',
@@ -31,6 +35,14 @@ export class CityComponent implements OnInit{
   ) {
     // Inicialización del formulario 
     this.formulario = this.fb.group({
+      name: [''],
+      day: [''],
+      description: [''],
+      accomodation: [''],
+      activities: [],
+      video: [null],
+    });
+    this.formularioEditar = this.fb.group({
       name: [''],
       day: [''],
       description: [''],
@@ -59,7 +71,16 @@ export class CityComponent implements OnInit{
 
   showModal = false;
   openModal(city: City) {
-    this.selectedCity = city;
+    this.diaEditar = city.day;
+    this.ciudadEditar = city.name;
+    this.formularioEditar.patchValue({
+      name: city.name,
+      day: city.day,
+      description: city.description,
+      accomodation: city.accomodation,
+      activities: city.activities,
+      // Añade aquí otros campos del formulario si los tienes
+    });
     this.showModal = true;
   }
   closeModal() {
@@ -155,13 +176,19 @@ export class CityComponent implements OnInit{
   }
   
   onSubmitEditar() {
-    const nameControl = this.formulario.get('name');
-    const dayControl = this.formulario.get('day');
-    const descriptionControl = this.formulario.get('description');
-    const accomodationControl = this.formulario.get('accomodation');
-    const activitiesControl = this.formulario.get('activities');
 
-    console.log("Nombre: " + this.formulario.get('name')?.value);
+    const activitiesValue = this.formularioEditar.get('activities')?.value;
+    const activities = typeof activitiesValue === 'string' ? activitiesValue.split(',') : [];
+    const newCity: City = {
+      name: this.formularioEditar.get('name')?.value || '',
+      day: this.formularioEditar.get('day')?.value || 0,
+      description: this.formularioEditar.get('description')?.value || '',
+      accomodation: this.formularioEditar.get('accomodation')?.value || '',
+      activities: activities || '',
+      video: this.formularioEditar.get('video')?.value || null,
+    };
+    this.codeFlowMiViajeP2Service.updateCity(newCity,this.diaEditar,this.ciudadEditar);
+    this.closeModal();
   }
 
   // Método que se ejecuta cuando se selecciona un archivo de video en el formulario
