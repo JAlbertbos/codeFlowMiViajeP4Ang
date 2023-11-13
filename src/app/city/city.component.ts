@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Storage } from '@angular/fire/storage';
 import City from '../interfaces/city.interface';
 
 @Component({
@@ -63,12 +64,7 @@ export class CityComponent implements OnInit{
     }
   }
 
-  async eliminarDia(city: City){
-    console.log(city);
-    await this.codeFlowMiViajeP2Service.deleteCity(city);
-  }
-
-
+  // Se utiliza para controlar la visibilidad del modal en la interfaz.
   showModal = false;
   openModal(city: City) {
     this.diaEditar = city.day;
@@ -83,30 +79,33 @@ export class CityComponent implements OnInit{
     });
     this.showModal = true;
   }
+
+  // Cierra el modal
   closeModal() {
     this.showModal = false;
   }
 
-
+  // Método para actualizar la lista de ciudades
+  async refreshCityList() {
+      // Obtener las ciudades desde el servicio y actualizar la variable local
+      (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
+        // Ordenar las ciudades por el campo 'day' de forma ascendente
+        this.cities = cities.sort((a, b) => a.day - b.day);
+      });
+  }
+  
   // Método que se ejecuta al inicio del componente
   async ngOnInit() {
     // Obtener las ciudades desde el servicio y suscribirse a los cambios
     (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
-      this.cities = cities;
-    });
-  }
-
-  // Método para actualizar la lista de ciudades
-  async refreshCityList() {
-    // Obtener las ciudades desde el servicio y actualizar la variable local
-    (await this.codeFlowMiViajeP2Service.getCities()).subscribe((cities) => {
-      this.cities = cities;
+      // Ordenar las ciudades por el campo 'day' de forma ascendente
+      this.cities = cities.sort((a, b) => a.day - b.day);
     });
   }
 
   // Método que se ejecuta cuando se selecciona un archivo de video
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
+  onFileSelected($event: any) {
+    const file: File = $event.target.files[0];
     this.newCity.video = file;
   }
 
@@ -118,6 +117,8 @@ export class CityComponent implements OnInit{
     const descriptionControl = this.formulario.get('description');
     const accomodationControl = this.formulario.get('accomodation');
     const activitiesControl = this.formulario.get('activities');
+    const videoControl = this.formulario.get('video');
+
 
     // Verificar si los campos obligatorios están vacíos
     if (
@@ -148,20 +149,16 @@ export class CityComponent implements OnInit{
         video: this.formulario.get('video')?.value || null,
       };
 
+      // Obtener el archivo de video del control del formulario
+      const videoFile: File = videoControl?.value;
       // Llamar al servicio para agregar la ciudad
-      this.codeFlowMiViajeP2Service.addCity(newCity).then((response) => {
+      this.codeFlowMiViajeP2Service.addCityWithVideo(newCity, videoFile ).then((response) => {
         if (response) {
-          // Obtener indice de la ultima ciudad de la lista
-          const index = this.cities.length -1;
-
-          // Insertar la nueva ciudad debajo de la ultima ciudad insertada
-          this.cities.splice(index + 1, 0, newCity);
-
+          
           // Actualizar la lista de ciudades y resetear el formulario
           this.refreshCityList();
           this.formulario.reset();
           this.showErrorMessage = false;
-
           // Cerrar el formulario automáticamente después de enviarlo
           this.toggleForm();
         } else {
@@ -175,8 +172,8 @@ export class CityComponent implements OnInit{
     }
   }
   
+  // Método que se ejecuta al enviar el formulario de edición
   onSubmitEditar() {
-
     const activitiesValue = this.formularioEditar.get('activities')?.value;
     const activities = typeof activitiesValue === 'string' ? activitiesValue.split(',') : [];
     const newCity: City = {
@@ -187,10 +184,17 @@ export class CityComponent implements OnInit{
       activities: activities || '',
       video: this.formularioEditar.get('video')?.value || null,
     };
+    // Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
     this.codeFlowMiViajeP2Service.updateCity(newCity,this.diaEditar,this.ciudadEditar);
     this.closeModal();
   }
 
+  // Metodo para eliminar un día (ciudad) específico
+  async eliminarDia(city: City){
+    console.log(city);
+    await this.codeFlowMiViajeP2Service.deleteCity(city);
+  }
+  
   // Método que se ejecuta cuando se selecciona un archivo de video en el formulario
   onVideoSelected(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -213,12 +217,12 @@ export class CityComponent implements OnInit{
     this.dropdownOpen = !this.dropdownOpen;
   }
 
- // Método para cerrar el menú desplegable
+  // Método para cerrar el menú desplegable
   closeDropdown() {
     this.dropdownOpen = false;
   }
 
-
+  // Alterna la visibilidad del formulario.
   toggleForm() {
     this.showForm = !this.showForm;
   }

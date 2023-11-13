@@ -49,6 +49,7 @@
   </div>
 </div> -->
 
+<!-- Formulario editar -->
 <div class="modal" [ngClass]="{'show': showModal}">
   <div class="modal-content">
       <span class="d-flex justify-content-end" (click)="closeModal()"><i class="fa fa-close"></i></span>
@@ -100,7 +101,7 @@
           <span class="day-symbol">{{ selectedCity === city ? '-' : '+' }}</span>Día {{ city.day }}
           <span class="city-symbol">-</span>{{ city.name | uppercase }}
         </button>
-        <button (click)="openModal(city)" class="boton-editar"><i class="fa fa-edit"></i></button>
+        <button class="boton-editar" (click)="openModal(city)" title="Editar"><i class="fa fa-edit"></i></button>
         <button class="boton-eliminar" (click)="eliminarDia(city)" title="Eliminar"><i class="fa fa-trash"></i></button>
       </div> 
       <div *ngIf="selectedCity === city" class="details">
@@ -151,7 +152,7 @@
     </div>  
     <div class="mb-3">
       <label class="form-label">Video</label>
-      <input type="file" class="form-control" formControlName="video" title="Video">
+      <input type="file" class="form-control" formControlName="video" title="Video" (change)="onFileSelected($event)">
     </div>
     <div class="error-message" *ngIf="showErrorMessage">
       Por favor, rellena todos los campos.
