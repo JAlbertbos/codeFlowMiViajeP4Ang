@@ -71,6 +71,7 @@ export class CityComponent implements OnInit{
     this.ciudadEditar = city.name;
 
     this.formularioEditar.patchValue({
+      id: city.id,
       name: city.name,
       day: city.day,
       description: city.description,
@@ -104,6 +105,37 @@ export class CityComponent implements OnInit{
       this.cities = cities.sort((a, b) => a.day - b.day);
     });
   }
+
+  // Método que se ejecuta cuando se selecciona un archivo de video
+  onFileSelected($event: any) {
+    const file = $event.target.files[0];
+    const videoControl = this.formulario.get('video');
+    if (videoControl) {
+      videoControl.setValue(file);
+    }
+  }
+  
+  onFileSelectedEditar($event: Event) {
+    const inputElement = $event.target as HTMLInputElement;
+  
+    if (inputElement && inputElement.files) {
+      const selectedFile = inputElement.files[0];
+  
+      if (selectedFile) {
+        console.log('Video seleccionado:', selectedFile);
+  
+        const videoControl = this.formularioEditar.get('video'); 
+  
+        if (videoControl) {
+          videoControl.setValue(selectedFile);
+        }
+      } else {
+        console.error('No se seleccionó ningún archivo.');
+      }
+    } else {
+      console.error('El elemento de entrada no es válido o no tiene archivos.');
+    }
+  }
 
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
@@ -147,8 +179,7 @@ export class CityComponent implements OnInit{
 
       // Obtener el archivo de video del control del formulario
       const videoFile: File = videoControl?.value;
-      console.log("VideoSubido +: " + videoControl);
-      console.log("VideoControl +: " + videoFile);
+
       // Llamar al servicio para agregar la ciudad
       this.codeFlowMiViajeP2Service.addCityWithVideo(newCity, videoFile ).then((response) => {
         if (response) {
@@ -183,8 +214,6 @@ export class CityComponent implements OnInit{
 
     const videoControl = this.formularioEditar.get('videoSubido');
     const videoFile: File = videoControl?.value;
-    console.log("VideoSubido: " + videoControl?.value);
-    console.log("VideoControl: " + videoFile);
 
     const newCity: City = {
       name: this.formularioEditar.get('name')?.value || '',
@@ -195,7 +224,8 @@ export class CityComponent implements OnInit{
       video: this.formularioEditar.get('video')?.value || null,
     };
 
-    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar, this.ciudadEditar, videoFile);
+    
+    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar,this.ciudadEditar);
     this.closeModal();
   }
 
