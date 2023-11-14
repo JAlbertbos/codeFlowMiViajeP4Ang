@@ -11,3 +11,9 @@
     padding: 20px; 
     margin-left: 100px;
 }
+
+.imagen {
+    max-width: 300px; /* Establece el ancho máximo */
+    height: auto; /* Mantiene la relación de aspecto */
+    object-fit: contain;
+  }
