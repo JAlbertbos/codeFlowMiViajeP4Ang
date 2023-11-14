@@ -75,8 +75,8 @@ export class CodeFlowMiViajeP2Service {
   async UpdateCityWithVideo(city: City, dia: Number, ciudad: String) {
     // Agregar la ciudad sin el video
       const id = await this.obtenerIdPorNombreYDia(ciudad,dia);
-    console.log("ID ->" + id);
-    
+      console.log("ID ->" + id);
+  
     if (id && city.video instanceof File) {
       try {
         const videoRef = ref(this.storage, `videos/${id}/${city.video.name}`);
@@ -87,15 +87,18 @@ export class CodeFlowMiViajeP2Service {
   
         // Verifica que videoUrl sea una cadena antes de intentar actualizar Firestore
         if (typeof videoUrl === 'string') {
-          await updateDoc(doc(this.db, 'cities', id), { video: videoUrl });
+          const updatedData = { ...city, video: videoUrl };
+          await updateDoc(doc(this.db, 'cities', id), updatedData);
         } else {
           console.error('Error: videoUrl is not a string');
         }
       } catch (error) {
         console.error('Error uploading video:', error);
       }
+    }else{
+      await this.updateCity(city,dia,ciudad);
     }
-    await this.updateCity(city, dia, ciudad);
+    
   }
  
   async obtenerIdPorNombreYDia(nombre: String, dia: Number): Promise<string | null> {

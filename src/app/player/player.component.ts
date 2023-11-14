@@ -17,6 +17,16 @@ export class PlayerComponent {
       }
     }
 
+    isVideo(video: any): boolean {
+      const supportedFormats = ['mp4', 'webm', 'avi']; // Puedes añadir más formatos aquí
+      const lowerCaseVideo = video.toLowerCase();
+      return supportedFormats.some(format => lowerCaseVideo.includes(format));
+    }
+    isImage(video: any): boolean {
+      const supportedFormats = ['jpg', 'png', 'bmp']; // Puedes añadir más formatos aquí
+      const lowerCaseVideo = video.toLowerCase();
+      return supportedFormats.some(format => lowerCaseVideo.includes(format));
+    }
   }
   
 
