@@ -49,7 +49,7 @@ export class CityComponent implements OnInit{
       description: [''],
       accomodation: [''],
       activities: [],
-      video: [null],
+      video: [''],
     });
   }
 
@@ -69,12 +69,14 @@ export class CityComponent implements OnInit{
   openModal(city: City) {
     this.diaEditar = city.day;
     this.ciudadEditar = city.name;
+
     this.formularioEditar.patchValue({
       name: city.name,
       day: city.day,
       description: city.description,
       accomodation: city.accomodation,
       activities: city.activities,
+      video: city.video,
       // Añade aquí otros campos del formulario si los tienes
     });
     this.showModal = true;
@@ -112,6 +114,28 @@ export class CityComponent implements OnInit{
     }
   }
   
+  onFileSelectedEditar($event: Event) {
+    const inputElement = $event.target as HTMLInputElement;
+  
+    if (inputElement && inputElement.files) {
+      const selectedFile = inputElement.files[0];
+  
+      if (selectedFile) {
+        console.log('Video seleccionado:', selectedFile);
+  
+        const videoControl = this.formulario.get('video'); 
+  
+        if (videoControl) {
+          videoControl.setValue(selectedFile);
+        }
+      } else {
+        console.error('No se seleccionó ningún archivo.');
+      }
+    } else {
+      console.error('El elemento de entrada no es válido o no tiene archivos.');
+    }
+  }
+
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
     console.log('Método onSubmit() llamado');
@@ -122,7 +146,6 @@ export class CityComponent implements OnInit{
     const accomodationControl = this.formulario.get('accomodation');
     const activitiesControl = this.formulario.get('activities');
     const videoControl = this.formulario.get('video');
-
 
     // Verificar si los campos obligatorios están vacíos
     if (
@@ -155,6 +178,8 @@ export class CityComponent implements OnInit{
 
       // Obtener el archivo de video del control del formulario
       const videoFile: File = videoControl?.value;
+      console.log("VideoSubido +: " + videoControl);
+      console.log("VideoControl +: " + videoFile);
       // Llamar al servicio para agregar la ciudad
       this.codeFlowMiViajeP2Service.addCityWithVideo(newCity, videoFile ).then((response) => {
         if (response) {
@@ -178,6 +203,7 @@ export class CityComponent implements OnInit{
   
   // Método que se ejecuta al enviar el formulario de edición
   onSubmitEditar() {
+
     var activities: string[] = [];
     const activitiesValue = this.formularioEditar.get('activities')?.value;
     if(typeof activitiesValue === 'string'){
@@ -185,7 +211,12 @@ export class CityComponent implements OnInit{
     }else{
       activities = this.formularioEditar.get('activities')?.value;
     }
-    
+
+    const videoControl = this.formularioEditar.get('videoSubido');
+    const videoFile: File = videoControl?.value;
+    console.log("VideoSubido: " + videoControl);
+    console.log("VideoControl: " + videoFile);
+
     const newCity: City = {
       name: this.formularioEditar.get('name')?.value || '',
       day: this.formularioEditar.get('day')?.value || 0,
@@ -194,8 +225,9 @@ export class CityComponent implements OnInit{
       activities: activities || [],
       video: this.formularioEditar.get('video')?.value || null,
     };
-    // Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
-    this.codeFlowMiViajeP2Service.updateCity(newCity,this.diaEditar,this.ciudadEditar);
+
+    
+    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar,this.ciudadEditar,videoFile);
     this.closeModal();
   }
 

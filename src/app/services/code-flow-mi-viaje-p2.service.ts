@@ -72,6 +72,22 @@ export class CodeFlowMiViajeP2Service {
     return addedCity;
   }
   
+  async UpdateCityWithVideo(city: City, dia: Number, ciudad: String, videoFile: File) {
+    // Agregar la ciudad sin el video
+    await this.updateCity(city,dia,ciudad);
+  
+    // Subir el video a Firebase Storage
+    if (videoFile) {
+      console.log("Lleva video: " + videoFile.type);
+      /*const videoRef = ref(this.storage, `videos/${addedCity.id}`);
+      await uploadBytes(videoRef, videoFile);
+      
+      // Actualizar la ciudad para incluir la URL del video en Firestore
+      const videoUrl = await getDownloadURL(videoRef);
+      await updateDoc(doc(this.db, 'cities', addedCity.id), { video: videoUrl });*/
+    }
+  }
+  
 }
 
 
