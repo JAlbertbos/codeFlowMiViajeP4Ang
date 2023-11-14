@@ -105,39 +105,6 @@ export class CityComponent implements OnInit{
     });
   }
 
-  // Método que se ejecuta cuando se selecciona un archivo de video
-  onFileSelected($event: any) {
-    const file = $event.target.files[0];
-    console.log(file.typeof);
-    const videoControl = this.formulario.get('video');
-    if (videoControl) {
-      videoControl.setValue(file);
-    }
-   
-  }
-  
-  onFileSelectedEditar($event: Event) {
-    const inputElement = $event.target as HTMLInputElement;
-  
-    if (inputElement && inputElement.files) {
-      const selectedFile = inputElement.files[0];
-  
-      if (selectedFile) {
-        console.log('Video seleccionado:', selectedFile);
-  
-        const videoControl = this.formulario.get('video'); 
-  
-        if (videoControl) {
-          videoControl.setValue(selectedFile);
-        }
-      } else {
-        console.error('No se seleccionó ningún archivo.');
-      }
-    } else {
-      console.error('El elemento de entrada no es válido o no tiene archivos.');
-    }
-  }
-
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
     console.log('Método onSubmit() llamado');
@@ -205,9 +172,9 @@ export class CityComponent implements OnInit{
   
   // Método que se ejecuta al enviar el formulario de edición
   onSubmitEditar() {
-
     var activities: string[] = [];
     const activitiesValue = this.formularioEditar.get('activities')?.value;
+
     if(typeof activitiesValue === 'string'){
        activities = activitiesValue.split(',');
     }else{
@@ -216,7 +183,7 @@ export class CityComponent implements OnInit{
 
     const videoControl = this.formularioEditar.get('videoSubido');
     const videoFile: File = videoControl?.value;
-    console.log("VideoSubido: " + videoControl);
+    console.log("VideoSubido: " + videoControl?.value);
     console.log("VideoControl: " + videoFile);
 
     const newCity: City = {
@@ -228,8 +195,7 @@ export class CityComponent implements OnInit{
       video: this.formularioEditar.get('video')?.value || null,
     };
 
-    
-    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar,this.ciudadEditar,videoFile);
+    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar, this.ciudadEditar, videoFile);
     this.closeModal();
   }
 
@@ -250,6 +216,28 @@ export class CityComponent implements OnInit{
         console.log('Video seleccionado:', selectedFile);
   
         const videoControl = this.formulario.get('video'); 
+  
+        if (videoControl) {
+          videoControl.setValue(selectedFile);
+        }
+      } else {
+        console.error('No se seleccionó ningún archivo.');
+      }
+    } else {
+      console.error('El elemento de entrada no es válido o no tiene archivos.');
+    }
+  }
+
+  onVideoSelectedEditar($event: Event) {
+    const inputElement = $event.target as HTMLInputElement;
+  
+    if (inputElement && inputElement.files) {
+      const selectedFile = inputElement.files[0];
+  
+      if (selectedFile) {
+        console.log('Video seleccionado:', selectedFile);
+  
+        const videoControl = this.formularioEditar.get('videoSubido'); // Usa formularioEditar en lugar de formulario
   
         if (videoControl) {
           videoControl.setValue(selectedFile);
