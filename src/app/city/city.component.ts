@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Storage } from '@angular/fire/storage';
+import { Storage, ref } from '@angular/fire/storage';
 import City from '../interfaces/city.interface';
 
 @Component({
@@ -105,12 +105,16 @@ export class CityComponent implements OnInit{
 
   // Método que se ejecuta cuando se selecciona un archivo de video
   onFileSelected($event: any) {
-    const file: File = $event.target.files[0];
-    this.newCity.video = file;
+    const file = $event.target.files[0];
+    const videoControl = this.formulario.get('video');
+    if (videoControl) {
+      videoControl.setValue(file);
+    }
   }
-
+  
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
+    console.log('Método onSubmit() llamado');
     // Obtener los controles del formulario para realizar validaciones
     const nameControl = this.formulario.get('name');
     const dayControl = this.formulario.get('day');
@@ -146,7 +150,7 @@ export class CityComponent implements OnInit{
         description: this.formulario.get('description')?.value || '',
         accomodation: this.formulario.get('accomodation')?.value || '',
         activities: activities,
-        video: this.formulario.get('video')?.value || null,
+        video: null,
       };
 
       // Obtener el archivo de video del control del formulario
@@ -190,10 +194,10 @@ export class CityComponent implements OnInit{
       activities: activities || [],
       video: this.formularioEditar.get('video')?.value || null,
     };
-// Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
+    // Llamar al servicio para actualizar la ciudad en base a la información del formulario de edición
     this.codeFlowMiViajeP2Service.updateCity(newCity,this.diaEditar,this.ciudadEditar);
     this.closeModal();
-  }
+  }
 
   // Metodo para eliminar un día (ciudad) específico
   async eliminarDia(city: City){

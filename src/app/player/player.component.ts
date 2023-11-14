@@ -16,13 +16,7 @@ export class PlayerComponent {
       }
     }
   
-    onSubmit() {
-      // Envía el formulario con el video seleccionado
-      if (this.selectedVideo) {
-        // Aquí puedes cargar el video a tu servidor o realizar otras acciones
-        // Puedes usar bibliotecas como ng2-file-upload para cargar archivos
-      }
-    }
+
   }
   
 

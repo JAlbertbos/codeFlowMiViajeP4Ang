@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, addDoc, collectionData, collection, doc, deleteDoc, where, query, updateDoc, orderBy } from '@angular/fire/firestore';
-import { Storage, ref, uploadBytes, listAll, uploadString } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, listAll, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { getDocs } from '@firebase/firestore';
 import City from '../interfaces/city.interface';
@@ -17,19 +17,6 @@ export class CodeFlowMiViajeP2Service {
   async addCity(city: City) {
     const cityRef = collection(this.db, 'cities');
     return addDoc(cityRef, city); 
-  }
-
-  async addCityWithVideo(city: City, videoFile: File) {
-    // Agregar la ciudad sin el video
-    const addedCity = await this.addCity(city);
-
-    // Subir el video a Firebase Storage
-    if (videoFile) {
-      const videoRef = ref(this.storage, `videos/${addedCity.id}`);
-      await uploadBytes(videoRef, videoFile);
-    }
-
-    return addedCity;
   }
   
   async getCities(filter = '') {
@@ -54,8 +41,8 @@ export class CodeFlowMiViajeP2Service {
       });
     }catch (error) {
       console.error("Error updating city:", error);
-    }
-  }
+    }
+  }
 
   async deleteCity(city: City) {
     const cityRef = collection(this.db, 'cities');
@@ -67,4 +54,24 @@ export class CodeFlowMiViajeP2Service {
       deleteDoc(docRef);
     });
   }
+
+  async addCityWithVideo(city: City, videoFile: File) {
+    // Agregar la ciudad sin el video
+    const addedCity = await this.addCity(city);
+  
+    // Subir el video a Firebase Storage
+    if (videoFile) {
+      const videoRef = ref(this.storage, `videos/${addedCity.id}`);
+      await uploadBytes(videoRef, videoFile);
+      
+      // Actualizar la ciudad para incluir la URL del video en Firestore
+      const videoUrl = await getDownloadURL(videoRef);
+      await updateDoc(doc(this.db, 'cities', addedCity.id), { video: videoUrl });
+    }
+  
+    return addedCity;
+  }
+  
 }
+
+
