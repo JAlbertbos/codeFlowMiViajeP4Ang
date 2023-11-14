@@ -1,27 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
-//import { City } from '../data/data';
+import { Firestore, addDoc, collectionData, collection, doc,DocumentData,QuerySnapshot, deleteDoc, where, query, updateDoc, orderBy } from '@angular/fire/firestore';
+
 
 @Pipe({
   name: 'searchFilter'
 })
 export class SearchFilterPipe implements PipeTransform {
   transform(items: any[], searchText: string): any[] {
-    if (!items) {
-      return [];
+    if (!items || !searchText) {
+      return items;
     }
 
-    // Filtrar los elementos en función de las selecciones y el texto de búsqueda
-    return items.filter((item) => {
-      const matchesSearchText =
-        !searchText || 
-        item.cityName.toLowerCase().includes(searchText.toLowerCase()) ||
-        `día ${item.dayNumber} | dia ${item.dayNumber}`.toLowerCase().includes(searchText.toLowerCase());
-        
-      return matchesSearchText ;
+    const filteredItems = items.filter((item) => {
+      const cityName = item.name.toLowerCase();
+      const searchInput = searchText.toLowerCase();
+
+      return cityName.includes(searchInput);
     });
+
+    return filteredItems;
   }
 }
-
 
 
 

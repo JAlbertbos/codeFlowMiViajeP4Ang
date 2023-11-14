@@ -29,6 +29,8 @@ export class CityComponent implements OnInit{
     activities: [],
     video: null,
   };
+  filterValue: string = ''; // Almacena el valor del filtro
+
 
   constructor(
     private codeFlowMiViajeP2Service: CodeFlowMiViajeP2Service,
@@ -105,37 +107,6 @@ export class CityComponent implements OnInit{
       this.cities = cities.sort((a, b) => a.day - b.day);
     });
   }
-
-// Método que se ejecuta cuando se selecciona un archivo de video
-  onFileSelected($event: any) {
-    const file = $event.target.files[0];
-    const videoControl = this.formulario.get('video');
-    if (videoControl) {
-      videoControl.setValue(file);
-    }
-  }
-  
-  onFileSelectedEditar($event: Event) {
-    const inputElement = $event.target as HTMLInputElement;
-  
-    if (inputElement && inputElement.files) {
-      const selectedFile = inputElement.files[0];
-  
-      if (selectedFile) {
-        console.log('Video seleccionado:', selectedFile);
-  
-        const videoControl = this.formularioEditar.get('video'); 
-  
-        if (videoControl) {
-          videoControl.setValue(selectedFile);
-        }
-      } else {
-        console.error('No se seleccionó ningún archivo.');
-      }
-    } else {
-      console.error('El elemento de entrada no es válido o no tiene archivos.');
-    }
-  }
 
   // Método que se ejecuta al enviar el formulario
   onSubmit() {
@@ -257,6 +228,7 @@ export class CityComponent implements OnInit{
     }
   }
 
+  // Método que se ejecuta cuando se selecciona un archivo de video en el formulario editar
   onVideoSelectedEditar($event: Event) {
     const inputElement = $event.target as HTMLInputElement;
   
@@ -278,7 +250,6 @@ export class CityComponent implements OnInit{
       console.error('El elemento de entrada no es válido o no tiene archivos.');
     }
   }
-
 
   // Método para alternar el estado de la variable dropdownOpen
   toggleDropdown() {
