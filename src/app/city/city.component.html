@@ -152,7 +152,7 @@
     </div>  
     <div class="mb-3">
       <label class="form-label">Video</label>
-      <input type="file" class="form-control" (change)="onFileSelected($event)" formControlName="video" title="Video" >
+      <input type="file" class="form-control" (change)="onVideoSelected($event)" formControlName="video" title="Video" >
     </div>
     <div class="error-message" *ngIf="showErrorMessage">
       Por favor, rellena todos los campos.

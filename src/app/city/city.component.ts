@@ -106,10 +106,12 @@ export class CityComponent implements OnInit{
   // Método que se ejecuta cuando se selecciona un archivo de video
   onFileSelected($event: any) {
     const file = $event.target.files[0];
+    console.log(file.typeof);
     const videoControl = this.formulario.get('video');
     if (videoControl) {
       videoControl.setValue(file);
     }
+   
   }
   
   // Método que se ejecuta al enviar el formulario
@@ -206,14 +208,20 @@ export class CityComponent implements OnInit{
   }
   
   // Método que se ejecuta cuando se selecciona un archivo de video en el formulario
-  onVideoSelected(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-
+  onVideoSelected($event: Event) {
+    const inputElement = $event.target as HTMLInputElement;
+  
     if (inputElement && inputElement.files) {
       const selectedFile = inputElement.files[0];
-
+  
       if (selectedFile) {
         console.log('Video seleccionado:', selectedFile);
+  
+        const videoControl = this.formulario.get('video'); 
+  
+        if (videoControl) {
+          videoControl.setValue(selectedFile);
+        }
       } else {
         console.error('No se seleccionó ningún archivo.');
       }
