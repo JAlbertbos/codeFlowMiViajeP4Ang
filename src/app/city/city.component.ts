@@ -71,6 +71,7 @@ export class CityComponent implements OnInit{
     this.ciudadEditar = city.name;
 
     this.formularioEditar.patchValue({
+      id: city.id,
       name: city.name,
       day: city.day,
       description: city.description,
@@ -123,7 +124,7 @@ export class CityComponent implements OnInit{
       if (selectedFile) {
         console.log('Video seleccionado:', selectedFile);
   
-        const videoControl = this.formulario.get('video'); 
+        const videoControl = this.formularioEditar.get('video'); 
   
         if (videoControl) {
           videoControl.setValue(selectedFile);
@@ -178,8 +179,7 @@ export class CityComponent implements OnInit{
 
       // Obtener el archivo de video del control del formulario
       const videoFile: File = videoControl?.value;
-      console.log("VideoSubido +: " + videoControl);
-      console.log("VideoControl +: " + videoFile);
+
       // Llamar al servicio para agregar la ciudad
       this.codeFlowMiViajeP2Service.addCityWithVideo(newCity, videoFile ).then((response) => {
         if (response) {
@@ -214,8 +214,6 @@ export class CityComponent implements OnInit{
 
     const videoControl = this.formularioEditar.get('videoSubido');
     const videoFile: File = videoControl?.value;
-    console.log("VideoSubido: " + videoControl);
-    console.log("VideoControl: " + videoFile);
 
     const newCity: City = {
       name: this.formularioEditar.get('name')?.value || '',
@@ -227,7 +225,7 @@ export class CityComponent implements OnInit{
     };
 
     
-    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar,this.ciudadEditar,videoFile);
+    this.codeFlowMiViajeP2Service.UpdateCityWithVideo(newCity,this.diaEditar,this.ciudadEditar);
     this.closeModal();
   }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collectionData, collection, doc, deleteDoc, where, query, updateDoc, orderBy } from '@angular/fire/firestore';
+import { Firestore, addDoc, collectionData, collection, doc,DocumentData,QuerySnapshot, deleteDoc, where, query, updateDoc, orderBy } from '@angular/fire/firestore';
 import { Storage, ref, uploadBytes, listAll, uploadString, getDownloadURL } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { getDocs } from '@firebase/firestore';
@@ -72,22 +72,50 @@ export class CodeFlowMiViajeP2Service {
     return addedCity;
   }
   
-  async UpdateCityWithVideo(city: City, dia: Number, ciudad: String, videoFile: File) {
+  async UpdateCityWithVideo(city: City, dia: Number, ciudad: String) {
     // Agregar la ciudad sin el video
-    await this.updateCity(city,dia,ciudad);
+      const id = await this.obtenerIdPorNombreYDia(ciudad,dia);
+      console.log("ID ->" + id);
   
-    // Subir el video a Firebase Storage
-    if (videoFile) {
-      console.log("Lleva video: " + videoFile.type);
-      /*const videoRef = ref(this.storage, `videos/${addedCity.id}`);
-      await uploadBytes(videoRef, videoFile);
-      
-      // Actualizar la ciudad para incluir la URL del video en Firestore
+       if (id && city.video instanceof File) {
+    try {
+      const videoRef = ref(this.storage, `videos/${city.id}`);
+      await uploadBytes(videoRef, city.video);
+
       const videoUrl = await getDownloadURL(videoRef);
-      await updateDoc(doc(this.db, 'cities', addedCity.id), { video: videoUrl });*/
+      console.log('videoUrl:', videoUrl);
+
+      // Verifica que videoUrl sea una cadena antes de intentar actualizar Firestore
+      if (typeof videoUrl === 'string') {
+        await updateDoc(doc(this.db, 'cities', id), { video: videoUrl });
+      } else {
+        console.error('Error: videoUrl is not a string');
+      }
+    } catch (error) {
+      console.error('Error uploading video:', error);
     }
   }
+    await this.updateCity(city,dia,ciudad);
+  }
+
   
+  async obtenerIdPorNombreYDia(nombre: String, dia: Number): Promise<string | null> {
+    try {
+      const citiesRef = collection(this.db, 'cities');
+      const q = query(citiesRef, where('name', '==', nombre), where('day', '==', dia));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const doc = querySnapshot.docs[0]; // Obtener el primer documento que coincida
+        return doc.id;
+      } else {
+        return null; // No se encontró ningún documento con el nombre y el día especificados
+      }
+    } catch (error) {
+      console.error('Error al obtener ID:', error);
+      return null;
+    }
+  }
 }
 
 
