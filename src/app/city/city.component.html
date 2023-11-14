@@ -53,7 +53,7 @@
 <div class="modal" [ngClass]="{'show': showModal}">
   <div class="modal-content">
       <span class="d-flex justify-content-end" (click)="closeModal()"><i class="fa fa-close"></i></span>
-        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formularioEditar" class="my-4 custom-form" name="Edit">
+        <form (ngSubmit)="onSubmitEditar()" [formGroup]="formularioEditar" class="my-4 custom-form" name="newItem">
           <div class="mb-3">
             <label class="form-label">Ciudad</label>
             <input type="text" class="form-control" formControlName="name" title="Nombre" 
@@ -81,7 +81,7 @@
           </div>  
           <div class="mb-3">
             <label class="form-label">Video</label>
-            <input type="file" class="form-control" formControlName="video" title="Video">
+            <input type="file" class="form-control" (change)="onFileSelected($event)" formControlName="video" title="Video">
           </div>
           <button type="button" class="boton-enviar" (click)="onSubmitEditar()">Editar</button>
         </form>

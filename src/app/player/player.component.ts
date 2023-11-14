@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import City from '../interfaces/city.interface';
 
 @Component({
   selector: 'app-player',
@@ -6,8 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent {
-
-    selectedVideo: File | null = null;
+  @Input() day!: City | null;
+  selectedVideo: File | null = null;
   
     onVideoSelected(event: any) {
       const fileInput = event.target as HTMLInputElement;
@@ -15,7 +16,6 @@ export class PlayerComponent {
         this.selectedVideo = fileInput.files[0];
       }
     }
-  
 
   }
   
