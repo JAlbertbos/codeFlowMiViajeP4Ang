@@ -77,24 +77,24 @@ export class CodeFlowMiViajeP2Service {
       const id = await this.obtenerIdPorNombreYDia(ciudad,dia);
       console.log("ID ->" + id);
   
-       if (id && city.video instanceof File) {
-    try {
-      const videoRef = ref(this.storage, `videos/${city.id}`);
-      await uploadBytes(videoRef, city.video);
-
-      const videoUrl = await getDownloadURL(videoRef);
-      console.log('videoUrl:', videoUrl);
-
-      // Verifica que videoUrl sea una cadena antes de intentar actualizar Firestore
-      if (typeof videoUrl === 'string') {
-        await updateDoc(doc(this.db, 'cities', id), { video: videoUrl });
-      } else {
-        console.error('Error: videoUrl is not a string');
+      if (id && city.video instanceof File) {
+        try {
+          const videoRef = ref(this.storage, `videos/${id}/${city.video.name}`);
+          await uploadBytes(videoRef, city.video);
+    
+          const videoUrl = await getDownloadURL(videoRef);
+          console.log('videoUrl:', videoUrl);
+    
+          // Verifica que videoUrl sea una cadena antes de intentar actualizar Firestore
+          if (typeof videoUrl === 'string') {
+            await updateDoc(doc(this.db, 'cities', id), { video: videoUrl });
+          } else {
+            console.error('Error: videoUrl is not a string');
+          }
+        } catch (error) {
+          console.error('Error uploading video:', error);
+        }
       }
-    } catch (error) {
-      console.error('Error uploading video:', error);
-    }
-  }
     await this.updateCity(city,dia,ciudad);
   }
 
