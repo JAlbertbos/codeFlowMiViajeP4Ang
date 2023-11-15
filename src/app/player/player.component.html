@@ -4,17 +4,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="dato">
-        <div *ngIf="isVideo(day?.video)">
+  <div class="dato">
+      <div class="video" *ngIf="isVideo(day?.video)">
           <video width="640" height="360" controls>
-            <source [src]="day?.video" type="video/mp4">
+              <source [src]="day?.video" type="video/mp4">
           </video>
-        </div>
-        <div *ngIf="isImage(day?.video)">
-            <img source [src]="day?.video"/>
-        </div>
-        
       </div>
+      <div class="imagen" *ngIf="isImage(day?.video)">
+          <img src="{{ day?.video }}" class="img-fluid" alt="Descripción de la imagen">
+      </div>
+      <div class="video">
+        <video width="640" height="360" controls>
+            <source [src]="day?.video" type="video/mp4">
+        </video>
+      </div>
+  </div>
 </body>
 
 
