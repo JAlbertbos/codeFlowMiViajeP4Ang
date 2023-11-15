@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CityComponent } from './city/city.component';
-import { CityListComponent } from './city-list/city-list.component';
 import { DetailComponent } from './detail/detail.component';
 import { PlayerComponent } from './player/player.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
@@ -14,17 +13,18 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { FormsModule } from '@angular/forms';
+import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CityComponent,
-    CityListComponent,
     DetailComponent,
     PlayerComponent,
     SearchFilterPipe,
-    CityListComponent,
+    DropdownFilterPipe,
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -35,7 +35,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

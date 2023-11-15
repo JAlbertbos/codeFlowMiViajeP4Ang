@@ -13,7 +13,7 @@
 }
 
 .imagen {
-    max-width: 300px; /* Establece el ancho máximo */
+    max-width: 400px; /* Establece el ancho máximo */
     height: auto; /* Mantiene la relación de aspecto */
-    object-fit: contain;
-  }
+    object-fit: contain;
+}
