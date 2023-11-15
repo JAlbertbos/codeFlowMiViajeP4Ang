@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collectionData, collection, doc,DocumentData,QuerySnapshot, deleteDoc, where, query, updateDoc, orderBy } from '@angular/fire/firestore';
-import { Storage, ref, uploadBytes, listAll, uploadString, getDownloadURL } from '@angular/fire/storage';
+import { Firestore, addDoc, collectionData, collection, doc, deleteDoc, where, query, updateDoc } from '@angular/fire/firestore';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { getDocs } from '@firebase/firestore';
 import City from '../interfaces/city.interface';
@@ -61,7 +61,7 @@ export class CodeFlowMiViajeP2Service {
   
     // Subir el video a Firebase Storage
     if (videoFile) {
-      const videoRef = ref(this.storage, `videos/${addedCity.id}`);
+      const videoRef = ref(this.storage, `videos/${videoFile.name}`);
       await uploadBytes(videoRef, videoFile);
       
       // Actualizar la ciudad para incluir la URL del video en Firestore

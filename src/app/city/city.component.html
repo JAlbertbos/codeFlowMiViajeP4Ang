@@ -21,8 +21,19 @@
     
       <!-- Contenedor de la barra de búsqueda -->
       <div class="search-container">
+        <p>Buscar por ciudad</p>
         <input type="text" [(ngModel)]="filterValue" id="filterValue" placeholder="Búsqueda">
       </div>
+      <!-- Contenedor del selector dropdown -->
+      <div class="dropdown-container">
+        <p>Buscar por dia</p>
+        <select class="selectedDay" (change)="onDaySelected($event)" title="desplegable">
+          <option value="" disabled selected>Selecciona un día</option>
+          <option *ngFor="let city of cities" [value]="city.day">{{ city.day }}</option>
+        </select>
+      </div>
+      <!-- Boton reset filtros -->
+      <button (click)="resetFilters()" class="reset-button">Restablecer filtros</button>
     </div>
   </div>
 </div> 
@@ -75,7 +86,7 @@
   <!-- Contenedor de la lista de ciudades -->
   <div class="city-list">
     <!-- Iteración sobre la lista de ciudades -->
-    <div class="city" *ngFor="let city of cities | searchFilter: filterValue"> 
+    <div class="city" *ngFor="let city of filteredCities | searchFilter: filterValue | dropdownFilter: selectedDay"> 
       <!-- Contenedor de información de cada ciudad -->
       <div class="city-info">
         <!-- Botón para mostrar/ocultar detalles -->

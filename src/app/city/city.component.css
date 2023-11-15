@@ -1,4 +1,3 @@
-
 /* Estilos para el contendor de la lista */
 .list-container{
     display: flex;
@@ -54,7 +53,7 @@ h2 {
     margin-right: 10px;
 }
 
-/*Estilos para el botón agregar */
+/* Estilos para el botón agregar */
 .boton-agregar {
     max-width: 100px;
     margin-left: 140px;
@@ -123,41 +122,41 @@ form[name="newItem"].custom-form {
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-  }
+}
   
-  .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-  }
-  
-  .close {
+}
+
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+}
   
-  .close:hover,
-  .close:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  .show {
+}
+
+.show {
     display: block;
-  }
+}
 
-  .closeModal {
+.closeModal {
     float: right;
-  }
+}
 
-  /* FILTROS */
+/* FILTROS */
 
-  .filter-container {
+.filter-container {
     display: flex; /* Asegura que los elementos estén en línea */
     justify-content: flex-end; /* Alinea el contenido hacia la parte superior y la derecha */ 
     margin-top: 10px; 
@@ -166,7 +165,7 @@ form[name="newItem"].custom-form {
     font: 600 20px "Montserrat";
 }
 
-    /* Estilos para imágenes dentro de elementos con la clase .filter-container */
+/* Estilos para imágenes dentro de elementos con la clase .filter-container */
 .filter-container img {
     margin-right: 10px; /* Espacio a la derecha de la imagen */
     width: 25px; /* Ancho de la imagen */
@@ -230,17 +229,59 @@ form[name="newItem"].custom-form {
     text-align: left; 
 }
 
-/* Estilos para la entrada de texto en el menú emergente */
-.search-container input[type="text"] {
-    margin-top: 25%;
+/* Estilos para el bcontenedor del search */
+.search-container {
+    margin-top: 150px;
     width: 100%; 
     height: 33px;
     font: 300 14px "Montserrat", sans-serif;
     text-align: left;
-    padding-left: 20px;
+
+}
+
+/* Estilos para la entrada de texto en el menú emergente */
+.search-container input[type="text"] {
+    min-width: 300px;
+    height: 33px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+    padding-left: 10px;
 }
 
 /* Estilo para el texto que se escribe en el buscador */
 .search-container input[type="text"]:not(:placeholder-shown){
     font-weight: 600; 
+}
+
+/* Estilos para el bcontenedor del dropdown */
+.dropdown-container {
+    margin-top: 110px; 
+    height: 50px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+}
+
+/* Estilos para el selector de dias */
+.selectedDay {
+    margin-top: 0px; 
+    height: 33px;
+    min-width: 300px;
+    font: 300 14px "Montserrat", sans-serif;
+    text-align: left;
+}
+
+/* Estilos para el botón de reinicio filtros */
+.reset-button {
+    width: 204px;
+    height: 30px;
+    margin-top: 150px;
+    margin-bottom: auto;
+    border-radius: 10px;
+    background: #cc3131;
+    text-align: center;
+    color: #ffffff;
+    font: 500 15px 'Montserrat', sans-serif;
+    position: relative;
+    cursor: pointer; /* Muestra un cursor de selección al pasar el mouse por encima */
+    border: none; /* Elimina el borde del botón */
 }

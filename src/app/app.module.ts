@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
+import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     PlayerComponent,
     SearchFilterPipe,
     CityListComponent,
+    DropdownFilterPipe,
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
