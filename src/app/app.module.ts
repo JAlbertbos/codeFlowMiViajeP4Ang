@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CityComponent } from './city/city.component';
-import { CityListComponent } from './city-list/city-list.component';
 import { DetailComponent } from './detail/detail.component';
 import { PlayerComponent } from './player/player.component';
 import { SearchFilterPipe } from './pipe/search-filter.pipe';
@@ -22,11 +21,9 @@ import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
   declarations: [
     AppComponent,
     CityComponent,
-    CityListComponent,
     DetailComponent,
     PlayerComponent,
     SearchFilterPipe,
-    CityListComponent,
     DropdownFilterPipe,
   ],
   imports: [
