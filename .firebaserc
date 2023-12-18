@@ -1,14 +1,5 @@
 {
   "projects": {
-    "default": "codeflowmiviajep2"
-  },
-  "targets": {
-    "codeflowmiviajep2": {
-      "hosting": {
-        "codeFlow-miVIaje": [
-          "codeflowmiviajep2"
-        ]
-      }
-    }
+    "default": "codeflowmiviajep4ang"
   }
 }
