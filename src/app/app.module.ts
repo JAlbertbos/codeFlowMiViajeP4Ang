@@ -13,6 +13,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { FormsModule } from '@angular/forms';
+import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
 
 
 @NgModule({
@@ -22,6 +24,10 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     DetailComponent,
     PlayerComponent,
     SearchFilterPipe,
+<<<<<<< HEAD
+=======
+    DropdownFilterPipe,
+>>>>>>> aac1620631315f60b191777e9ece7194d3837445
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -32,7 +38,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

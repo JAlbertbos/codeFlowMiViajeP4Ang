@@ -1,53 +1,42 @@
-<!--  <div class="filter-container">
- -->
+<div class="filter-container">
   <!-- Botón que activa el menú desplegable -->
-<!--   <button (click)="toggleDropdown()" class="filter-button">
- -->    
-    <!-- Icono de filtro -->
-    <!-- <img src="assets/Images/IconoFiltro.png" alt="Icon Filter">
-    Filtros -->
+  <button (click)="toggleDropdown()" class="filter-button">
+     
+  <!-- Icono de filtro -->
+  <img src="assets/Images/IconoFiltro.png" alt="Icon Filter">
+  Filtros 
     
     <!-- Icono de flecha que rota según el estado del menú desplegable -->
-    <!-- <span class="arrow-icon" [class.rotate-right]="dropdownOpen" [class.rotate-down]="!dropdownOpen">&#9660;</span>
-  </button> -->
+    <span class="arrow-icon" [class.rotate-right]="dropdownOpen" [class.rotate-down]="!dropdownOpen">&#9660;</span>
+    </button> 
 
-  <!-- Capa de fondo oscuro que se muestra cuando el menú está abierto y cierra el menú al hacer clic en ella -->
-<!--   <div class="background-overlay" [hidden]="!dropdownOpen" (click)="closeDropdown()"></div>
- -->  
-  <!-- Contenedor del menú emergente -->
-<!--   <div class="dropdown-content" [hidden]="!dropdownOpen">
- --> 
+    <!-- Capa de fondo oscuro que se muestra cuando el menú está abierto y cierra el menú al hacer clic en ella -->
+    <div class="background-overlay" [hidden]="!dropdownOpen" (click)="closeDropdown()"></div>
+ 
+    <!-- Contenedor del menú emergente -->
+    <div class="dropdown-content" [hidden]="!dropdownOpen">
+ 
     <!-- Contenido de la ventana desplegable con tamaño fijo -->
-<!--     <div class="fixed-size-dropdown">
- -->    
-      <!-- Contenedor de la barra de búsqueda -->
-      <!-- <div class="search-container">
-        <input type="text" id="filterValue" placeholder="Búsqueda">
-      </div> -->
+    <div class="fixed-size-dropdown">
     
-      <!-- Etiqueta para mostrar los días con checkbox -->
-      <!-- <div class="filter-by-days">
-        <p class="filter-text">Filtrar por días</p>
-        <div class="day-checkboxes"></div>
-          <label *ngFor="let day of days">
-            <input type="checkbox" [checked]="isDaySelected(day.dayNumber)" (change)="toggleDaySelection(day.dayNumber)"> Día {{ day.dayNumber }} 
-          </label>
-      </div> -->
-   
-      <!-- Etiqueta para mostrar las ciudades con checkbox -->
-      <!-- <div class="filter-by-cities">
-        <p class="filter-text">Filtrar por ciudad</p>
-        <div class="city-checkboxes"></div>
-          <label *ngFor="let day of days">
-            <input type="checkbox" [checked]="isCitySelected(day.cityName)" (change)="toggleCitySelection(day.cityName)"> {{ day.cityName}}
-          </label>
-      </div> -->
-   
-    <!-- Botón para aplicar los filtros seleccionados -->
-    <!-- <button (click)="applyFilters()" class="apply-button">Aplicar filtros</button>
-    <button (click)="resetFilters()" class="reset-button">Restablecer filtros</button>
+      <!-- Contenedor de la barra de búsqueda -->
+      <div class="search-container">
+        <p>Buscar por ciudad</p>
+        <input type="text" [(ngModel)]="filterValue" id="filterValue" placeholder="Búsqueda">
+      </div>
+      <!-- Contenedor del selector dropdown -->
+      <div class="dropdown-container">
+        <p>Buscar por dia</p>
+        <select class="selectedDay" (change)="onDaySelected($event)" title="desplegable">
+          <option value="" disabled selected>Selecciona un día</option>
+          <option *ngFor="let city of cities" [value]="city.day">{{ city.day }}</option>
+        </select>
+      </div>
+      <!-- Boton reset filtros -->
+      <button (click)="resetFilters()" class="reset-button">Restablecer filtros</button>
+    </div>
   </div>
-</div> -->
+</div> 
 
 <!-- Formulario editar -->
 <div class="modal" [ngClass]="{'show': showModal}">
@@ -85,7 +74,7 @@
           </div>
           <div class="mb-3">
             <label class="form-label">Video</label>
-            <input type="file" class="form-control" (change)="onFileSelectedEditar($event)" formControlName="videoSubido" title="Video" >
+            <input type="file" class="form-control" (change)="onVideoSelectedEditar($event)" formControlName="videoSubido" title="Video" >
           </div>
           <button type="button" class="boton-enviar" (click)="onSubmitEditar()">Editar</button>
         </form>
@@ -97,7 +86,7 @@
   <!-- Contenedor de la lista de ciudades -->
   <div class="city-list">
     <!-- Iteración sobre la lista de ciudades -->
-    <div class="city" *ngFor="let city of cities"> 
+    <div class="city" *ngFor="let city of filteredCities | searchFilter: filterValue | dropdownFilter: selectedDay"> 
       <!-- Contenedor de información de cada ciudad -->
       <div class="city-info">
         <!-- Botón para mostrar/ocultar detalles -->
@@ -156,7 +145,7 @@
     </div>  
     <div class="mb-3">
       <label class="form-label">Video</label>
-      <input type="file" class="form-control" (change)="onFileSelected($event)" formControlName="video" title="Video" >
+      <input type="file" class="form-control" (change)="onVideoSelected($event)" formControlName="video" title="Video" >
     </div>
     <div class="error-message" *ngIf="showErrorMessage">
       Por favor, rellena todos los campos.
