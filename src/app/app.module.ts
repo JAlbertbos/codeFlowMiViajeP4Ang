@@ -24,10 +24,7 @@ import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
     DetailComponent,
     PlayerComponent,
     SearchFilterPipe,
-<<<<<<< HEAD
-=======
     DropdownFilterPipe,
->>>>>>> aac1620631315f60b191777e9ece7194d3837445
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
