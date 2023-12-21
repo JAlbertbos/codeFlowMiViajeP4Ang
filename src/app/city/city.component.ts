@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import City from '../interfaces/city.interface';
 
 @Component({
@@ -289,4 +289,5 @@ export class CityComponent implements OnInit{
   closeModal() {
     this.showModal = false;
   }
+  
 }

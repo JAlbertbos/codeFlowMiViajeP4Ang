@@ -6,13 +6,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BackendService {
-  private apiUrl = 'https://your-backend-url.com'; // URL de tu backend
+  private apiUrl = 'https://localhost:4200/mi-viaje';
 
   constructor(private http: HttpClient) {}
 
-  sendNotificationToDevice(deviceToken: string, payload: any) {
-    // Lógica para enviar la notificación al token específico del dispositivo a través de tu backend
-    // Puedes usar HttpClient para hacer la solicitud POST al servidor
-    return this.http.post(`${this.apiUrl}/send-notification`, { token: deviceToken, payload });
+  sendTokenToServer(token: string) {
+    return this.http.post(`${this.apiUrl}/store-token`, { token });
   }
 }

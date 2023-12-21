@@ -84,7 +84,7 @@ const onWrittenFunctionDefault = onValueWritten("/user/{uid}", (event) => {
 const OnWrittenFunctionInstance = onValueWritten(
   {
     ref: "/user/{uid}",
-    instance: "codeflowmiviajep4"
+    instance: "codeflowmiviajep4ang"
     // This example assumes us-central1, but to set location:
     // region: "europe-west1"
   },
@@ -98,7 +98,7 @@ const OnWrittenFunctionInstance = onValueWritten(
 const onWrittenFunctionInstance = onValueWritten(
   {
     ref: "/user/{uid=*@gmail.com}",
-    instance: "codeflowmiviajep4*"
+    instance: "codeflowmiviajep4ang*"
     // This example assumes us-central1, but to set location:
     // region: "europe-west1"
   },
