@@ -1,6 +1,6 @@
 // notification.service.ts
 import { Injectable } from '@angular/core';
-import { initializeFirebaseApp, initializeFirebaseMessaging, getFCMToken } from '../firebase-config';
+import { initializeFirebaseApp, initializeFirebaseMessaging, getFCMToken } from '../../firebase-config';
 import { BackendService } from './backend.service';
 import { FirebaseApp } from 'firebase/app';
 

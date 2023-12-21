@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
 import { AppModule } from './app/app.module';
-import { getFCMToken, initializeFirebaseApp, initializeFirebaseMessaging } from './app/firebase-config';
+import { getFCMToken, initializeFirebaseApp, initializeFirebaseMessaging } from './firebase-config';
 import { FirebaseApp } from 'firebase/app';
 
 enableProdMode();

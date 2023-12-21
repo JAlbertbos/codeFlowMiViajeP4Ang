@@ -1,0 +1,14 @@
+importScripts('https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.1.0/firebase-messaging-compat.js');
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCuJ7PBsxr6KHZRFw3QzYqEVAXYy0vyB34",
+    authDomain: "codeflowmiviajep4ang.firebaseapp.com",
+    projectId: "codeflowmiviajep4ang",
+    storageBucket: "codeflowmiviajep4ang.appspot.com",
+    messagingSenderId: "78549437438",
+    appId: "1:78549437438:web:f6480ff9dbe16444990eaf",
+    measurementId: "G-1EJK8VSF1S"
+};
+
+const messaging = firebase.messaging();
