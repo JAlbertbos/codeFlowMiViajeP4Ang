@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BackendService {
-  private apiUrl = 'https://localhost:4200';
+  private apiUrl = 'https://localhost:4200/mi-viaje';
 
   constructor(private http: HttpClient) {}
 
