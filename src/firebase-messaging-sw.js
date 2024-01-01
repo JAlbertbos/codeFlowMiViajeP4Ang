@@ -14,3 +14,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
+
+messaging.onBackgroundMessage((payload) => {
+  console.log('Mensaje recibido en el Service Worker:', payload);
+  // Aquí puedes mostrar una notificación o enviar los datos al cliente a través de postMessage()
+});

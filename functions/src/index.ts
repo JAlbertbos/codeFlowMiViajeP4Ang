@@ -74,7 +74,7 @@ export const notifyOnCreateCity = functions.firestore
 // Implementa tu lógica para obtener los tokens de los dispositivos
 async function getDeviceTokens() {
   
-  const tokens = ['e6kZnCiGPNeprsx3QsUIpn:APA91bGgVQyApLJ7gWhwmPjlk6Md75wFl-hHskVkRWwqmG5IPwV9Qk9t9E-1mgwZxzTviaA3dmpmeXQDmX13130kzZMDQ6zzgf4ZvWbc9CkcgyMAUVWdxpbq81LtIfpwbRU_VCVhtbcT'];
+  const tokens = ['e6kZnCiGPNeprsx3QsUIpn:APA91bHCNvM2ezonqiBP1GHGvwSDbYxwkxSPqzg1Pk0fpiR1eOSihs9Xx_TyhCBu_n81HloGTQ6zIXi5BdNAM9Ky2iNttzPrN2SuGDZxulRg1YBbNgRWbaVgzQu7MCScwszUnz3iSPUw'];
   return tokens;
 }
 
