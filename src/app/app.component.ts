@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Mensaje recibido:', payload);
+      this.showNotification(payload);
       // Aquí puedes mostrar la notificación o manejar el mensaje según tus necesidades
     });
   }
@@ -47,8 +48,9 @@ export class AppComponent implements OnInit {
 
   showNotification(payload: any) {
     if (Notification.permission === 'granted') {
-      const { title, body } = payload.data;
-      const notification = new Notification(title, { body });
+    // const title = payload.data.notification.title;
+    //  const body = payload.data.notification.body;
+      const notification = new Notification("Se ha realizado el cambio correctamente");
 
       notification.onclick = () => {
         // Aquí puedes manejar la acción al hacer clic en la notificación
