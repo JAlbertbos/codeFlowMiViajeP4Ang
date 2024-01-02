@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
 import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DropdownFilterPipe } from './pipe/dropdown-filter.pipe';
     AngularFireAuthModule,
     ReactiveFormsModule,
     provideStorage(() => getStorage()),
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

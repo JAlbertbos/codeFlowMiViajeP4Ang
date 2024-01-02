@@ -1,12 +1,13 @@
 export const environment = {
+  production: false,
   firebase: {
-    projectId: 'codeflowmiviajep2',
-    appId: '1:393014915822:web:b515cdb0e62a07db4879ff',
-    databaseURL: 'https://codeflowmiviajep2-default-rtdb.firebaseio.com',
-    storageBucket: 'codeflowmiviajep2.appspot.com',
-    apiKey: 'AIzaSyDekF2KagY5RaZeChss44SEV_UjC9_gpZc',
-    authDomain: 'codeflowmiviajep2.firebaseapp.com',
-    messagingSenderId: '393014915822',
-    measurementId: 'G-B9HSPQCZWW',
+    apiKey: "AIzaSyCuJ7PBsxr6KHZRFw3QzYqEVAXYy0vyB34",
+    authDomain: "codeflowmiviajep4ang.firebaseapp.com",
+    projectId: "codeflowmiviajep4ang",
+    storageBucket: "codeflowmiviajep4ang.appspot.com",
+    messagingSenderId: "78549437438",
+    appId: "1:78549437438:web:f6480ff9dbe16444990eaf",
+    measurementId: "G-1EJK8VSF1S",
+    vpaidKey: "BH7Bm3Z8nMqLa9GvySPoLFSXF1PB41xMjjmzJ_lJPnasa5L5ati5Bl4rd6PKs19AAQ_jiXCefYHQMRwpRV4mx8A"
   },
 };

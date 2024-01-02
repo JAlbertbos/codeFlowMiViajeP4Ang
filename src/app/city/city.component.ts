@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CodeFlowMiViajeP2Service } from 'src/app/services/code-flow-mi-viaje-p2.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import City from '../interfaces/city.interface';
 
 @Component({
@@ -62,6 +62,7 @@ export class CityComponent implements OnInit{
       accomodation: [''],
       activities: [],
       video: [''],
+      videoSubido: [''] ,
     });
   }
 
@@ -227,8 +228,6 @@ export class CityComponent implements OnInit{
       activities = this.formularioEditar.get('activities')?.value;
     }
 
-    const videoControl = this.formularioEditar.get('videoSubido');
-    const videoFile: File = videoControl?.value;
 
     const newCity: City = {
       name: this.formularioEditar.get('name')?.value || '',
@@ -253,18 +252,21 @@ export class CityComponent implements OnInit{
       if (selectedFile) {
         console.log('Video seleccionado:', selectedFile);
   
-        const videoControl = this.formularioEditar.get('video'); 
+        const videoControl = this.formularioEditar.get('video');
   
         if (videoControl) {
           videoControl.setValue(selectedFile);
+          // Establece el valor del control 'videoSubido' con el archivo seleccionado
+          this.formularioEditar.get('videoSubido')?.setValue(selectedFile);
         }
       } else {
         console.error('No se seleccionó ningún archivo.');
       }
     } else {
       console.error('El elemento de entrada no es válido o no tiene archivos.');
-    }
+    }
   }
+  
 
   // Se utiliza para controlar la visibilidad del modal "editar" en la interfaz.
   showModal = false;
@@ -289,4 +291,5 @@ export class CityComponent implements OnInit{
   closeModal() {
     this.showModal = false;
   }
+  
 }
