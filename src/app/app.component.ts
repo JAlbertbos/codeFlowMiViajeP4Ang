@@ -10,12 +10,19 @@ import { Firestore, doc, getFirestore, setDoc } from '@angular/fire/firestore';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   constructor(private firestore: Firestore) {
     // Inicializar Firebase aquí
     initializeApp(environment.firebase);
   }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('reload')) {
+      localStorage.setItem('reload', 'true');
+      location.reload();
+    } else {
+      localStorage.removeItem('reload');
+    }
     this.requestPermission();
     this.listenForMessages();
   }
