@@ -16,9 +16,9 @@
             "outputPath": "dist/code-flow-mi-viaje",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
+            "polyfills": 
               "zone.js"
-            ],
+            ,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",

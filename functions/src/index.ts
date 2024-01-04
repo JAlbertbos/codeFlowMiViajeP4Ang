@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
+
 admin.initializeApp();
 
 export const notifyOnCreateCity = functions.firestore
@@ -73,9 +74,13 @@ export const notifyOnCreateCity = functions.firestore
 
 // Implementa tu lógica para obtener los tokens de los dispositivos
 async function getDeviceTokens() {
-  
-  const tokens = ['e6kZnCiGPNeprsx3QsUIpn:APA91bFfhM1JyPg-n26y2yaCB86i2T4vTbMntvtqOSSxOiw82CdzSXCu5NcPMu6_jMDe3WsS3Rrr4sbQtte9T2yR_XAqT0JoolCq5fz6rxLzA2oX47cl0guHbIK9gFn_qUmpaGUSbuv9'];
+  const firestore = admin.firestore();
+  const tokensSnapshot = await firestore.collection('tokens').get();
+
+  const tokens: string[] = [];
+  tokensSnapshot.forEach((doc) => {
+    const token = doc.data().token;
+    tokens.push(token);
+  });
   return tokens;
 }
-
-
